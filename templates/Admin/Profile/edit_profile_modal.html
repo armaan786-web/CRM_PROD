@@ -1,0 +1,66 @@
+<div class="modal fade" id="exampleModal-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="exampleModalLabel" class="edit-profile">Edit Profile</h5> -->
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+              <!-- <span aria-hidden="true">&times;</span> -->
+            </button>
+          </div>
+          <form action="{% url 'edit_profile' %}" method="post">
+            {% csrf_token %}
+          <div class="modal-body">
+            <div class="resolvedquerycontent1">
+              <ul class="list-group">
+                <div class="list-item">
+                  <li class="list-group-item edit-profile">Edit Profile</li>
+
+                </div>
+
+                <li class="list-group-item item-content">
+                  
+                  <div class="inputforms-appointment">
+                    <div class="row formrow">
+                      <div class="col-md-6 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}" placeholder="willard">
+                      </div>
+                      <div class="col-md-6 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}" placeholder="bryant">
+                      </div>
+                    </div>
+                    <div class="row formrow">
+                      <div class="col-md-6 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label">Contact Number</label>
+                        <input type="number" class="form-control" id="contact" name="contact" value="{{ user.admin.contact_no }}" placeholder="+91 9029388333">
+                      </div>
+                      <div class="col-md-6 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label">Email </label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" placeholder="xyz@gmail.com" readonly>
+                      </div>
+                    </div>
+
+
+
+
+
+                  </div>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-color" type="submit">Save
+
+              </button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,47 @@
+{% load crispy_forms_tags %}
+<div class="modal fade" id="editvisacolor-{{i.id}}" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <form action="{% url "team_updated" %}" method="POST" >
+    {% csrf_token %}
+  <div class="modal-content " style="width: 500px;">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Update Colour</h5>
+      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+      </button>
+    </div>
+    <hr>
+    <div class="modal-body ">
+      <div class="row formrow">
+        <div class="col-md-12">
+          
+          <input type="text" value="{{i.id}}" name="users_id" hidden>
+         
+          <label class="custom-form-label" for="">Give Colour For Employee</label>
+          <select class="form-select" name="color_code" id="color_code">
+             
+              <option value="Grey" {% if i.color_code == "Grey" %}selected{% endif %}>Grey</option>
+              <option value="Blue" {% if i.color_code == "Blue" %}selected{% endif %}>Blue</option>
+              <option value="White" {% if i.color_code == "White" %}selected{% endif %}>White</option>
+              <option value="Red" {% if i.color_code == "Red" %}selected{% endif %}>Red</option>
+              <option value="Green" {% if i.color_code == "Green" %}selected{% endif %}>Green</option>
+          </select>
+          
+            
+            
+        </div>
+      </div>
+      
+    </div>
+    <hr>
+    <div class="modal-footer">
+      <div class="modal-footer">
+        <div class="d-grid  d-md-flex justify-content-md-end">
+          <button class="btn btn-color" type="submit">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</div>

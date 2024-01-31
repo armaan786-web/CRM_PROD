@@ -1,0 +1,499 @@
+{% extends "Agent/Base/base.html" %}
+{% load static %}
+{% block main-content %}
+
+<style>
+  .newscroll {
+    overflow-y: auto;
+    max-height: 380px;
+  }
+
+  .newscroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #A87C7C;
+    color: white;
+  }
+</style>
+<div class="container mt-4">
+
+  <div class="marque">
+    <button class="btn-lg" type="button">News Updates</button>
+    <marquee behavior="" direction="">
+      {% if latest_news %}
+      {% for newsItem in latest_news %}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M18.0002 3.99693V16.0726C18.0002 16.2558 17.9496 16.4354 17.854 16.5917C17.7583 16.7481 17.6213 16.8752 17.458 16.959C17.2946 17.0428 17.1113 17.0802 16.928 17.067C16.7448 17.0537 16.5687 16.9905 16.4192 16.8841L11.0001 13.0253V7.04427L16.4192 3.18551C16.5687 3.0791 16.7448 3.01582 16.928 3.0026C17.1113 2.98938 17.2946 3.02674 17.458 3.11057C17.6213 3.1944 17.7583 3.32147 17.854 3.47783C17.9496 3.63419 18.0002 3.81379 18.0002 3.99693Z"
+          fill="url(#paint0_linear_688_204)" />
+        <path
+          d="M10.0001 6.04743H5.00003C4.46959 6.04743 3.96087 6.25748 3.58579 6.63136C3.21072 7.00525 3 7.51235 3 8.04111V12.0285C3 12.5572 3.21072 13.0643 3.58579 13.4382C3.96087 13.8121 4.46959 14.0221 5.00003 14.0221V19.0063C5.00003 19.5351 5.21075 20.0422 5.58582 20.4161C5.9609 20.79 6.46962 21 7.00006 21H8.00007C8.53051 21 9.03923 20.79 9.41431 20.4161C9.78938 20.0422 10.0001 19.5351 10.0001 19.0063V6.04743ZM7.00006 19.0063V14.0221H8.00007V19.0063H7.00006Z"
+          fill="url(#paint1_linear_688_204)" />
+        <path
+          d="M19.0002 7.22669V12.8429C19.5846 12.6394 20.0909 12.2598 20.4492 11.7566C20.8075 11.2535 21 10.6518 21 10.0348C21 9.41778 20.8075 8.81605 20.4492 8.31293C20.0909 7.80981 19.5846 7.4302 19.0002 7.22669Z"
+          fill="url(#paint2_linear_688_204)" />
+        <defs>
+          <linearGradient id="paint0_linear_688_204" x1="12" y1="3" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00B0D2" />
+            <stop offset="1" stop-color="#1959DB" />
+          </linearGradient>
+          <linearGradient id="paint1_linear_688_204" x1="12" y1="3" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00B0D2" />
+            <stop offset="1" stop-color="#1959DB" />
+          </linearGradient>
+          <linearGradient id="paint2_linear_688_204" x1="12" y1="3" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00B0D2" />
+            <stop offset="1" stop-color="#1959DB" />
+          </linearGradient>
+        </defs>
+      </svg>
+      {{ newsItem.news }} <span style="margin-right: 20px;"></span>
+      {% endfor %}
+      {% else %}
+      Waiting for news...
+      {% endif %}
+    </marquee>
+  </div>
+
+</div>
+
+  <div class="div3">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col left">
+        <div class="card h-100" style="border: none">
+          <a href="{% url "agent_new_leads_details" %}">
+            <div class="card-body1 card-bodys d-flex justify-content-between">
+              <div class="first-div">
+                <!-- Content of the first div goes here -->
+
+                <div class="Frame5 w-[151px] h-[126px] flex-col justify-start items-start inline-flex">
+                  <img src="{% static "style/Styling/DashboardDesign/images/image 1.png" %}" alt="" class="imgdas" />
+                  <div class="Frame2 px-2 py-4 justify-center items-center gap-2.5 inline-flex">
+                    <div class="Headingsection">Total Leads</div>
+                  </div>
+                </div>
+              </div>
+              <div class="second-div">
+                <!-- Content of the second div goes here -->
+                <p>{{lead_count}}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col">
+        <a href="{% url "agent_new_leads_details" %}">
+          <div class="card h-100" style="border: none">
+            <div class="card-body1 card-bodys1 d-flex justify-content-between border-none">
+              <div class="first-div">
+                <!-- Content of the first div goes here -->
+
+                <div class="Frame5 w-[151px] h-[126px] flex-col justify-start items-start inline-flex">
+                  <img src="{% static "style/Styling/DashboardDesign/images/image2.png" %}" alt="" class="imgdas" />
+                  <div class="Frame2 px-2 py-4 justify-center items-center gap-2.5 inline-flex">
+                    <div class="Headingsection">Total Enrolled Leads</div>
+                  </div>
+                </div>
+              </div>
+              <div class="second-div">
+                <!-- Content of the second div goes here -->
+                <p>{{leadaccept_count}}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="card h-100" style="border: none">
+          <div class="card-body1 card-bodys2">
+            <h5 class="card-title">{{agent.assign_employee.users}}</h5>
+            <a class="dropdown-item" href="tel:{{agent.assign_employee.contact_no}}">
+              <div class="NavLink">
+                <div class="AddUser">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M11.5969 14.778C12.0153 15.195 12.582 15.4292 13.1728 15.4292C13.7635 15.4292 14.3302 15.195 14.7486 14.778L15.5366 13.9902C15.955 13.5732 16.5216 13.339 17.1124 13.339C17.7032 13.339 18.2699 13.5732 18.6883 13.9902L20.2642 15.5658C20.4946 15.7587 20.6798 15.9998 20.807 16.272C20.9341 16.5442 21 16.841 21 17.1415C21 17.4419 20.9341 17.7387 20.807 18.0109C20.6798 18.2832 20.4946 18.5242 20.2642 18.7171C16.1376 22.8441 11.3875 20.8836 7.2486 16.7453C3.10969 12.607 1.15898 7.86211 5.28664 3.73509C5.47967 3.50491 5.72079 3.31981 5.99305 3.19281C6.2653 3.06581 6.56208 3 6.86251 3C7.16294 3 7.45972 3.06581 7.73198 3.19281C8.00424 3.31981 8.24536 3.50491 8.43838 3.73509L10.0143 5.31072C10.4316 5.72891 10.666 6.29556 10.666 6.88635C10.666 7.47713 10.4316 8.04379 10.0143 8.46198L9.22632 9.2498C8.80895 9.66799 8.57455 10.2346 8.57455 10.8254C8.57455 11.4162 8.80895 11.9829 9.22632 12.4011L11.5969 14.778Z"
+                      fill="#046C4E" />
+                  </svg>
+                </div>
+                <div class="dropText">{{agent.assign_employee.contact_no}}</div>
+              </div>
+            </a>
+            <a class="dropdown-item" href="mailto:{{agent.assign_employee.users.email}}">
+              <div class="NavLink">
+                <div class="AddUser">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 12.8531L21.275 5.44053C20.9189 5.15812 20.4673 5.00211 20 5H4C3.53267 5.00211 3.08115 5.15812 2.725 5.44053L12 12.8531Z"
+                      fill="#046C4E" />
+                    <path
+                      d="M13.25 14.3119C12.8861 14.5717 12.4412 14.7136 11.983 14.716C11.556 14.7168 11.1403 14.5877 10.799 14.3483L2 7.3184V17.1333C2 17.6284 2.21071 18.1032 2.58579 18.4533C2.96086 18.8033 3.46957 19 4 19H20C20.5304 19 21.0391 18.8033 21.4142 18.4533C21.7893 18.1032 22 17.6284 22 17.1333V7.3184L13.25 14.3119Z"
+                      fill="#046C4E" />
+                  </svg>
+                </div>
+                <div class="dropText">{{agent.assign_employee.users.email}}</div>
+              </div>
+            </a>
+            <div class="report">
+              <a href="https://wa.me/+91 8318187374" target="_blank">
+                <div class="" style="float: left;">
+                  <span class="badge whatsappbutton"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                      viewBox="0 0 24 24" fill="none">
+                      <g clip-path="url(#clip0_75_921)">
+                        <path
+                          d="M0.514995 11.8564C0.514433 13.8728 1.0453 15.8418 2.05473 17.5772L0.418457 23.5067L6.5324 21.9156C8.22344 22.8293 10.1181 23.3081 12.0435 23.3082H12.0486C18.4046 23.3082 23.5786 18.1749 23.5813 11.8654C23.5825 8.808 22.3839 5.93302 20.2063 3.77005C18.029 1.60726 15.1334 0.415534 12.0481 0.414139C5.69131 0.414139 0.517713 5.54716 0.515089 11.8564"
+                          fill="url(#paint0_linear_75_921)" />
+                        <path
+                          d="M0.103217 11.8527C0.102561 13.9417 0.652452 15.981 1.69787 17.7786L0.00292969 23.9207L6.3361 22.2726C8.0811 23.2168 10.0458 23.7147 12.045 23.7154H12.0501C18.6342 23.7154 23.994 18.3975 23.9968 11.8621C23.998 8.69488 22.7563 5.71656 20.5009 3.47609C18.2451 1.23591 15.2459 0.00130233 12.0501 0C5.46492 0 0.105841 5.31721 0.103217 11.8527ZM3.87476 17.469L3.63829 17.0965C2.64423 15.5277 2.11955 13.7149 2.1203 11.8534C2.12245 6.4213 6.5767 2.00186 12.0539 2.00186C14.7063 2.00298 17.1991 3.02921 19.074 4.89116C20.9488 6.7533 21.9804 9.22865 21.9798 11.8614C21.9773 17.2935 17.523 21.7135 12.0501 21.7135H12.0462C10.2642 21.7126 8.51646 21.2376 6.99228 20.34L6.62956 20.1265L2.87133 21.1045L3.87476 17.4689V17.469Z"
+                          fill="url(#paint1_linear_75_921)" />
+                        <path
+                          d="M9.06427 6.89749C8.84063 6.40419 8.60529 6.39423 8.39262 6.38558C8.21848 6.37814 8.01941 6.3787 7.82052 6.3787C7.62144 6.3787 7.298 6.45302 7.0246 6.7493C6.75092 7.04586 5.97974 7.76251 5.97974 9.22009C5.97974 10.6778 7.04943 12.0864 7.19855 12.2843C7.34786 12.4818 9.26362 15.5687 12.2977 16.7562C14.8193 17.7431 15.3325 17.5468 15.8798 17.4973C16.4271 17.448 17.6459 16.7808 17.8946 16.089C18.1434 15.3973 18.1434 14.8044 18.0688 14.6805C17.9942 14.557 17.7951 14.4829 17.4966 14.3348C17.198 14.1866 15.7304 13.4699 15.4569 13.371C15.1832 13.2722 14.9842 13.2229 14.7851 13.5195C14.5861 13.8157 14.0144 14.4829 13.8402 14.6805C13.6661 14.8785 13.4919 14.9032 13.1935 14.755C12.8948 14.6063 11.9334 14.2939 10.7929 13.2847C9.90546 12.4993 9.30636 11.5296 9.13222 11.2329C8.95807 10.9367 9.11357 10.7762 9.26325 10.6286C9.39737 10.4958 9.56186 10.2826 9.71126 10.1097C9.86009 9.93665 9.90977 9.81321 10.0093 9.61563C10.1089 9.41786 10.0591 9.24484 9.98456 9.09665C9.90977 8.94847 9.3297 7.48326 9.06427 6.89749Z"
+                          fill="white" />
+                      </g>
+                      <defs>
+                        <linearGradient id="paint0_linear_75_921" x1="1158.56" y1="2309.67" x2="1158.56" y2="0.414139"
+                          gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#1FAF38" />
+                          <stop offset="1" stop-color="#60D669" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_75_921" x1="1199.7" y1="2392.07" x2="1199.7" y2="0"
+                          gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#F9F9F9" />
+                          <stop offset="1" stop-color="white" />
+                        </linearGradient>
+                        <clipPath id="clip0_75_921">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg> Whatsapp Us</span>
+
+                </div>
+              </a>
+              <div class="" style="float: right;">
+                <a href="#" style="color: red;" data-toggle="modal" data-target="#reportModal">Report Against RM</a>
+              </div>
+              {% include "Agent/Dashboard/rm_modal.html" %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="div4">
+    <div class="slide-container swiper">
+      <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+          {% for i in package %}
+          <div class="card swiper-slide">
+            <div class="images-content">
+              <span class="overlay"></span>
+
+              <div class="card-image1" style="height:14rem;">
+                {% if i.image %}
+                <img src="{{ i.image.url }}" alt="Owl Image" class="card-img">
+                {% else %}
+                <img src="{% static " style/Styling\DashboardDesign\images\card-header.png" %}" alt="" class="card-img">
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="card-body1">
+              <h5 class="card-title">{{i.title}}</h5>
+              <p class="card-text">Country: <Span class="txt" style="color:black;font-size:large;">{{i.visa_country}}</Span></p>
+              <p class="card-text">Processing Time :<Span class="txt">{{i.processing_time}}</Span></p>
+              <p class="card-text">Category: <Span class="txt">{{i.visa_category}}</Span></p>
+              <p class="card-text">No. Of Visa :<Span class="txt">{{i.number_of_visa}}</Span></p>
+              <p class="card-text">Expiry Date: <Span class="txt">{{i.package_expiry_date}}</Span></p>
+            </div>
+            {% comment %} <a href="{% url "agent_PackageApplyView" i.id %}"> {% endcomment %}
+              <a href="{% url "Agent_package_detail" i.id %}">
+              <div class="Button">
+                <div class="Text">All Details</div>
+                <div class="ArrowRight">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="21"
+                    viewBox="0 0 20 21"
+                    fill="none"
+                  >
+                    <path
+                      d="M17.4184 10.9451C17.4996 10.7324 17.5208 10.4984 17.4794 10.2726C17.438 10.0468 17.3359 9.83941 17.1859 9.67668L12.8999 5.02192C12.8011 4.91077 12.6829 4.82212 12.5521 4.76113C12.4214 4.70015 12.2808 4.66804 12.1385 4.6667C11.9963 4.66536 11.8552 4.6948 11.7235 4.75331C11.5918 4.81182 11.4722 4.89823 11.3716 5.00749C11.271 5.11676 11.1914 5.24668 11.1375 5.3897C11.0836 5.53271 11.0565 5.68594 11.0578 5.84046C11.059 5.99497 11.0886 6.14767 11.1447 6.28965C11.2009 6.43162 11.2825 6.56003 11.3848 6.66738L13.8429 9.33688H3.5715C3.28732 9.33688 3.01478 9.45948 2.81383 9.67772C2.61289 9.89595 2.5 10.1919 2.5 10.5006C2.5 10.8092 2.61289 11.1052 2.81383 11.3234C3.01478 11.5417 3.28732 11.6643 3.5715 11.6643H13.8429L11.3859 14.3326C11.2836 14.44 11.202 14.5684 11.1458 14.7103C11.0896 14.8523 11.0601 15.005 11.0588 15.1595C11.0576 15.314 11.0847 15.4673 11.1386 15.6103C11.1925 15.7533 11.272 15.8832 11.3726 15.9925C11.4732 16.1017 11.5929 16.1882 11.7246 16.2467C11.8562 16.3052 11.9973 16.3346 12.1396 16.3333C12.2819 16.3319 12.4225 16.2998 12.5532 16.2388C12.6839 16.1779 12.8022 16.0892 12.901 15.9781L17.187 11.3233C17.2863 11.215 17.3649 11.0865 17.4184 10.9451Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div class="swiper-button-next swiper-navBtn"></div>
+      <div class="swiper-button-prev swiper-navBtn"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+
+  <div class="div5">
+    <div class="left11">
+      <div class="container ">
+        <div class="totalleads">
+          <div class="totaldays" style="display:flex;gap:5px">
+
+
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 32 32" fill="none">
+                <path
+                  d="M16 16.7018C18.2091 16.7018 20 14.8167 20 12.4913C20 10.1659 18.2091 8.28079 16 8.28079C13.7908 8.28079 12 10.1659 12 12.4913C12 14.8167 13.7908 16.7018 16 16.7018Z"
+                  fill="#1C64F2" />
+                <path
+                  d="M14.6666 20.9123H17.3333C18.7478 20.9123 20.1043 21.5038 21.1045 22.5566C22.1047 23.6095 22.6666 25.0374 22.6666 26.5263V29.3334H9.33329V26.5263C9.33329 25.0374 9.89519 23.6095 10.8954 22.5566C11.8956 21.5038 13.2521 20.9123 14.6666 20.9123Z"
+                  fill="#1C64F2" />
+                <path
+                  d="M20 12.4913C19.999 11.499 19.6644 10.5391 19.0555 9.78157C18.4467 9.02403 17.6028 8.51774 16.6733 8.35236"
+                  fill="#1C64F2" />
+                <path
+                  d="M22 2.66677C21.042 2.66986 20.1026 2.94537 19.2811 3.46418C18.4597 3.983 17.7867 4.72583 17.3333 5.61413C18.8382 5.93964 20.1904 6.80144 21.162 8.05422C22.1335 9.307 22.6649 10.8741 22.6666 12.4913C22.6644 12.9439 22.6197 13.3953 22.5333 13.8387C23.8966 13.7021 25.1574 13.0173 26.053 11.9267C26.9486 10.8362 27.4101 9.42403 27.3414 7.98429C27.2727 6.54454 26.679 5.18819 25.684 4.19767C24.689 3.20714 23.3694 2.65878 22 2.66677Z"
+                  fill="#1C64F2" />
+                <path
+                  d="M12.488 18.4309C11.3499 17.6807 10.4506 16.5899 9.90529 15.2983H9.33329C7.56583 15.3005 5.87137 16.0406 4.62159 17.3562C3.3718 18.6717 2.66874 20.4554 2.66663 22.3158V25.1228C2.66663 25.4951 2.8071 25.8521 3.05715 26.1153C3.3072 26.3785 3.64634 26.5263 3.99996 26.5263H6.66663C6.66967 24.6945 7.23947 22.9134 8.2898 21.4528C9.34013 19.9922 10.8138 18.9314 12.488 18.4309Z"
+                  fill="#1C64F2" />
+                <path
+                  d="M22.6666 15.2983H22.0946C21.5493 16.5899 20.65 17.6807 19.512 18.4309C21.1861 18.9314 22.6598 19.9922 23.7101 21.4528C24.7605 22.9134 25.3302 24.6945 25.3333 26.5263H28C28.3536 26.5263 28.6927 26.3785 28.9428 26.1153C29.1928 25.8521 29.3333 25.4951 29.3333 25.1228V22.3158C29.3312 20.4554 28.6281 18.6717 27.3783 17.3562C26.1285 16.0406 24.4341 15.3005 22.6666 15.2983Z"
+                  fill="#1C64F2" />
+                <path
+                  d="M9.33329 12.4913C9.33498 10.8741 9.86641 9.307 10.838 8.05422C11.8095 6.80145 13.1617 5.93964 14.6666 5.61414C14.2313 4.76332 13.5941 4.04564 12.8172 3.53094C12.0402 3.01625 11.1498 2.72208 10.2327 2.67707C9.3157 2.63206 8.4032 2.83774 7.58408 3.27409C6.76495 3.71044 6.06711 4.3626 5.55847 5.16708C5.04983 5.97157 4.74773 6.90097 4.68157 7.86482C4.61541 8.82866 4.78745 9.79412 5.18094 10.6672C5.57443 11.5403 6.17597 12.2913 6.927 12.8471C7.67802 13.4028 8.55296 13.7445 9.46663 13.8387C9.38017 13.3953 9.33551 12.944 9.33329 12.4913Z"
+                  fill="#1C64F2" />
+              </svg></div>
+            <div><span class="personno">{{enq_count}}</span> <br> <span class="leads">Leads generated this Month</span>
+            </div>
+          </div>
+
+
+          <div class="enrolled2" style="border-radius: 6px;
+      background:  #DEF7EC; padding:5px;height:30px">
+
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M10.8542 4.96967L7.5882 1.96963C7.51215 1.89964 7.42166 1.84431 7.32202 1.80688C7.12228 1.73104 6.89795 1.73104 6.69821 1.80688C6.59857 1.84431 6.50807 1.89964 6.43203 1.96963L3.16602 4.96967C3.08803 5.03885 3.02583 5.12161 2.98304 5.21311C2.94025 5.30462 2.91772 5.40304 2.91678 5.50262C2.91584 5.60221 2.9365 5.70097 2.97755 5.79314C3.0186 5.88531 3.07923 5.96905 3.1559 6.03947C3.23256 6.10989 3.32372 6.16558 3.42407 6.2033C3.52441 6.24101 3.63193 6.25998 3.74035 6.25912C3.84876 6.25825 3.9559 6.23756 4.05552 6.19826C4.15514 6.15895 4.24523 6.10181 4.32055 6.03018L6.19443 4.31041V11.5C6.19443 11.6989 6.28045 11.8897 6.43358 12.0303C6.5867 12.171 6.79438 12.25 7.01093 12.25C7.22748 12.25 7.43516 12.171 7.58828 12.0303C7.74141 11.8897 7.82743 11.6989 7.82743 11.5V4.31041L9.69968 6.03018C9.85367 6.1668 10.0599 6.24239 10.274 6.24069C10.4881 6.23898 10.6929 6.1601 10.8443 6.02104C10.9957 5.88198 11.0815 5.69387 11.0834 5.49722C11.0852 5.30057 11.0029 5.11112 10.8542 4.96967Z"
+                fill="#03543F" />
+            </svg> 24%
+          </div>
+        </div>
+        <hr>
+        <div class="totalleads">
+          <div class="enrolled1">
+
+
+            Total Leads:{{enq_count}}</div>
+          <div class="totaldays">
+
+
+            Enrolled: {{enq_enrolled_count}}</div>
+        </div>
+        <canvas id="chartjs-bar"></canvas>
+        <hr>
+        <div class="totalleads">
+          <div>Monthly Leads</div>
+          <a href="{% url "agent_new_leads_details" %}" class="anchartag">
+            <div class="totaldays">
+
+
+              Total Leads</div><svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11"
+              fill="none">
+              <path
+                d="M3.89451 8.41671C3.78486 8.41668 3.67769 8.3825 3.58654 8.31848C3.49538 8.25446 3.42434 8.16348 3.38238 8.05703C3.34043 7.95059 3.32945 7.83346 3.35083 7.72046C3.37221 7.60746 3.425 7.50366 3.50252 7.42218L5.32829 5.50362L3.50252 3.58506C3.44956 3.53132 3.40732 3.46703 3.37827 3.39595C3.34921 3.32486 3.33391 3.24841 3.33327 3.17105C3.33263 3.09369 3.34666 3.01698 3.37454 2.94537C3.40242 2.87377 3.44359 2.80872 3.49564 2.75402C3.5477 2.69932 3.60961 2.65605 3.67774 2.62676C3.74588 2.59746 3.81889 2.58272 3.89251 2.5834C3.96613 2.58407 4.03888 2.60014 4.10653 2.63067C4.17417 2.66121 4.23535 2.70559 4.28649 2.76124L6.50425 5.09171C6.60819 5.20097 6.66659 5.34913 6.66659 5.50362C6.66659 5.65811 6.60819 5.80627 6.50425 5.91553L4.28649 8.246C4.18254 8.35527 4.04154 8.41667 3.89451 8.41671Z"
+                fill="#1A56DB" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="left11">
+     
+         <div class="card" style="height: 360px;">
+            <div class="card-body tablescroll" style="overflow-y: auto;">
+               <h5 class="card-title">
+                  <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                     data-bs-target="#exampleModal" data-bs-whatever="@mdo">+ Todo List</button>
+               </h5>
+
+
+                  <table class="table">
+                     {% comment %} <thead>
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">First</th>
+
+                        </tr>
+                     </thead> {% endcomment %}
+                     <tbody>
+                        {% for i in todo %}
+                        <tr>
+                           <th scope="row">{{forloop.counter}}</th>
+                           <td>{{i.description}}</td>
+
+                           <td>
+                              <div class="row" style="display: flex">
+                                 <div class="col-md-6">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{i.id}}"
+                                       data-bs-whatever="@mdo">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                          viewBox="0 0 24 24" fill="none">
+                                          <path
+                                             d="M16.3033 4.3032C16.5247 4.07397 16.7895 3.89114 17.0823 3.76536C17.3751 3.63957 17.6901 3.57337 18.0087 3.5706C18.3274 3.56783 18.6434 3.62855 18.9384 3.74923C19.2333 3.8699 19.5013 4.04811 19.7266 4.27345C19.952 4.49879 20.1302 4.76676 20.2509 5.06171C20.3715 5.35666 20.4323 5.67269 20.4295 5.99136C20.4267 6.31003 20.3605 6.62496 20.2347 6.91777C20.109 7.21058 19.9261 7.47541 19.6969 7.6968L18.7453 8.6484L15.3517 5.2548L16.3033 4.3032ZM13.6549 6.9516L3.6001 17.0064V20.4H6.9937L17.0497 10.3452L13.6537 6.9516H13.6549Z"
+                                             fill="#1F2A37" />
+                                       </svg>
+                                    </a>
+                                    {% include "Agent/Dashboard/edit_todo_modal.html" %}
+
+
+                                    <!-- ////////////////////////////////////////////////////// -->
+                                 </div>
+                                 <div class="col-md-6">
+                                    <a href="{% url "Agent_delete_todo" i.id %}">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                          viewBox="0 0 24 24" fill="none">
+                                          <path
+                                             d="M20 6.21053H16V4.10526C16 3.54691 15.7893 3.01143 15.4142 2.61662C15.0391 2.2218 14.5304 2 14 2H10C9.46957 2 8.96086 2.2218 8.58579 2.61662C8.21071 3.01143 8 3.54691 8 4.10526V6.21053H4C3.73478 6.21053 3.48043 6.32143 3.29289 6.51884C3.10536 6.71624 3 6.98398 3 7.26316C3 7.54233 3.10536 7.81007 3.29289 8.00748C3.48043 8.20489 3.73478 8.31579 4 8.31579H5V19.8947C5 20.4531 5.21071 20.9886 5.58579 21.3834C5.96086 21.7782 6.46957 22 7 22H17C17.5304 22 18.0391 21.7782 18.4142 21.3834C18.7893 20.9886 19 20.4531 19 19.8947V8.31579H20C20.2652 8.31579 20.5196 8.20489 20.7071 8.00748C20.8946 7.81007 21 7.54233 21 7.26316C21 6.98398 20.8946 6.71624 20.7071 6.51884C20.5196 6.32143 20.2652 6.21053 20 6.21053ZM10 4.10526H14V6.21053H10V4.10526ZM11 17.7895C11 18.0686 10.8946 18.3364 10.7071 18.5338C10.5196 18.7312 10.2652 18.8421 10 18.8421C9.73478 18.8421 9.48043 18.7312 9.29289 18.5338C9.10536 18.3364 9 18.0686 9 17.7895V10.4211C9 10.1419 9.10536 9.87414 9.29289 9.67673C9.48043 9.47932 9.73478 9.36842 10 9.36842C10.2652 9.36842 10.5196 9.47932 10.7071 9.67673C10.8946 9.87414 11 10.1419 11 10.4211V17.7895ZM15 17.7895C15 18.0686 14.8946 18.3364 14.7071 18.5338C14.5196 18.7312 14.2652 18.8421 14 18.8421C13.7348 18.8421 13.4804 18.7312 13.2929 18.5338C13.1054 18.3364 13 18.0686 13 17.7895V10.4211C13 10.1419 13.1054 9.87414 13.2929 9.67673C13.4804 9.47932 13.7348 9.36842 14 9.36842C14.2652 9.36842 14.5196 9.47932 14.7071 9.67673C14.8946 9.87414 15 10.1419 15 10.4211V17.7895Z"
+                                             fill="#9B1C1C" />
+                                       </svg>
+                                    </a>
+                                 </div>
+                              </div>
+                           </td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                     </tbody>
+                  </table>
+               
+            </div>
+         </div>
+
+     
+    </div>
+  </div>
+
+
+  <div class="div5">
+    <div class="left11">
+      <div class="container">
+        <h4><b>SuccessStories</b></h4>
+        <hr>
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for i in story %}
+            <div class="carousel-item active" data-bs-interval="2000">
+              <img src="{{ i.image.url }}" class="d-block w-100" alt="..." style="height: 380px;">
+            </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div class="left11 newsdiv">
+      <h4><b>News</b></h4>
+      <hr>
+      <div class="container newscroll">
+        {% for newsItem in latest_news %}
+        <div class="news-card">
+
+          {{ newsItem.news }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Chart(document.getElementById("chartjs-bar"), {
+      type: "bar",
+      data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        datasets: [{
+          label: "Last year",
+          backgroundColor: "rgba(26, 86, 219, 1)",
+          borderColor: window.theme.primary,
+          hoverBackgroundColor: window.theme.primary,
+          padding: 20,
+          hoverBorderColor: window.theme.primary,
+          data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+          barPercentage: 1.4,
+          categoryPercentage: .5
+        }, {
+          label: "This year",
+          backgroundColor: "rgba(45, 196, 139, 1)",
+          borderColor: "#dee2e6",
+          hoverBackgroundColor: "#dee2e6",
+          hoverBorderColor: "#dee2e6",
+          data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
+          barPercentage: 1.4,
+          categoryPercentage: .5
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            stacked: false
+          }],
+          xAxes: [{
+            stacked: false,
+            gridLines: {
+              color: "transparent"
+            }
+          }]
+        },
+        elements: {
+          rectangle: {
+            borderRadius: 8 // Set your desired border radius
+          }
+        }
+      }
+    });
+  });
+</script>
+
+
+
+{% include "Agent/Dashboard/add_todo_modal.html" %}
+ 
+
+{% endblock main-content %}

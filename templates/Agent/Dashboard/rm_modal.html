@@ -1,0 +1,33 @@
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{% url "create_report" %}" method="POST" autocomplete="off" >
+            {% csrf_token %}
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Report Against RM</h4>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
+              </div>
+              <!-- Modal Body -->
+              
+                
+                <div class="modal-body">
+                  <div class="row formrow">
+                    <div class="col-md-12">
+                      <label class="custom-form-label">Notes</label>
+                      <textarea class="form-control" name="notes" id="notes" ></textarea>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-color" type="submit">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+    </div>
+  </div>

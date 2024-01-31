@@ -1,0 +1,55 @@
+<div class="modal fade" id="appointmentModal-{{i.id}}" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width:150%;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="appointmentModalLabel">New message</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <div class="control-label mb-10">
+                                <span class="sub-text d-flex">Enquiry No : {{i.enquiry_number}}
+                                    <div class="ml-1" id="currentDateTime"></div>
+                                </span>
+                                <span class="sub-text d-flex">Client Name : {{i.FirstName}} {{i.LastName}}
+                                    {% comment %} <div class="ml-1">Admin </div> {% endcomment %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                   
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Created By</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in i.enqappointment_set.all %}
+                  <tr>
+                    <td>{{appointment.date}}</td>
+                    <td>{{appointment.time}}</td>
+                    <td>{{appointment.description}}</td>
+                    <td>{{appointment.created_date}}</td>
+                    <td>{{appointment.created_by}}</td>
+
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>

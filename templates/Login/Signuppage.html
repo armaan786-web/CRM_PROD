@@ -1,0 +1,126 @@
+{% extends "Login/base.html" %}
+{% load static %}
+
+{% block main-content %}
+
+    <div class="logincontainer">
+      <div class="loginimg">
+        <img
+          src="{% static "style/Styling/Login/Images/Login_img.svg" %}"
+          alt=""
+        />
+      </div>
+      <div class="logincontent">
+          <div class="loginheading">Hello, Welcome to Skytrails!</div>
+          <div class="loginaccount">Create your account</div>
+
+          <form method="POST">
+            {% csrf_token %}
+          <div class="loginemailpass">
+            {% if messages %}
+                            {% for message in messages %}
+                            
+							<div class="alert alert-warning alert-dismissible fade show" role="alert">
+								{{message}}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+                            
+                            {% endfor %}
+                    {% endif %}
+            <div class="row formrow">
+                <div class="col-md-6 col-sm-12">
+                    <label for="exampleFormControlInput1" class="custom-form-label">First name</label>
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Enter First name">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label for="exampleFormControlInput1" class="custom-form-label">Last name</label>
+                    <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Enter Last name">
+                </div>  
+            </div>
+            <div class="row formrow">
+                <div class="col-md-12">
+                    <label for="exampleFormControlInput1" class="custom-form-label">Contact Number</label>
+                    <input class="form-control" type="text" name="contact_no" id="contact_no" placeholder="Enter Number" >
+                </div> 
+            </div>
+            <div class="row formrow">
+                <div class="col-md-12">
+                    <label for="exampleFormControlInput1" class="custom-form-label">Type</label>
+                    <select name="type" id="type" class="form-control">
+                                    
+                        <option value="Agent">Agent</option>
+                        <option value="Outsourcing partner">OutSourcing Agent</option>
+
+                    </select>
+                </div>
+                  
+            </div>
+            <div class="row formrow">
+                <div class="col-md-12">
+                    <label for="exampleFormControlInput1" class="custom-form-label">Email Address</label>
+                    <input class="form-control" type="email" name="email" id="email" placeholder="Enter Email Address" >
+                </div>
+                  
+            </div>
+            <div class="row formrow">
+               <div style="position: relative; display: inline-block;">
+                        <div class="col-12">
+                        <label for="exampleFormControlInput1" class="custom-form-label">Password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Enter Password">
+                        <div id="eyeIcon" style="position: absolute; right: 20px; top: 70%; transform: translateY(-50%); cursor: pointer;">
+              
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                <path
+                                    d="M1.83301 8.50016C1.83301 8.46316 1.84985 8.36109 1.92848 8.18547C2.00327 8.01844 2.11959 7.81655 2.27849 7.59069C2.596 7.13937 3.06268 6.62187 3.64189 6.13288C4.8082 5.14824 6.3642 4.3335 7.99967 4.3335C9.63514 4.3335 11.1912 5.14824 12.3575 6.13288C12.9367 6.62187 13.4033 7.13937 13.7209 7.59069C13.8798 7.81655 13.9961 8.01844 14.0709 8.18547C14.1495 8.36109 14.1663 8.46316 14.1663 8.50016C14.1663 8.65747 14.0716 9.00105 13.7986 9.4661C13.5361 9.91308 13.1387 10.4207 12.611 10.8983C11.5579 11.8512 10.0068 12.6668 7.99967 12.6668C5.99254 12.6668 4.4414 11.8512 3.38833 10.8983C2.86061 10.4207 2.46324 9.91308 2.20078 9.4661C1.92771 9.00105 1.83301 8.65747 1.83301 8.50016ZM6.61075 10.5788C7.02187 10.8535 7.50522 11.0002 7.99967 11.0002C8.66271 11.0002 9.2986 10.7368 9.76744 10.2679C10.2363 9.79909 10.4997 9.1632 10.4997 8.50016C10.4997 8.00571 10.3531 7.52236 10.0783 7.11124C9.80364 6.70011 9.4132 6.37968 8.95638 6.19046C8.49957 6.00124 7.9969 5.95174 7.51195 6.0482C7.027 6.14466 6.58154 6.38276 6.23191 6.7324C5.88228 7.08203 5.64417 7.52748 5.54771 8.01244C5.45125 8.49739 5.50076 9.00006 5.68998 9.45687C5.87919 9.91369 6.19963 10.3041 6.61075 10.5788Z"
+                                    fill="#071C2C" stroke="#071C2C" />
+                            </svg>
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" style="display: none;">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.157 10.0773C12.6232 9.65396 13.0579 9.19719 13.4577 8.71067C13.7163 8.396 13.8457 8.23933 13.8457 8C13.8457 7.76067 13.7163 7.604 13.4577 7.28933C12.511 6.14 10.423 4 7.99901 4C7.43901 4 6.89768 4.114 6.38368 4.304L8.08168 6.002C8.5831 6.02265 9.05844 6.23105 9.41337 6.58585C9.76829 6.94065 9.97686 7.41591 9.99768 7.91733L12.157 10.0773ZM6.26101 7.00933C6.0437 7.39025 5.95761 7.83204 6.016 8.26668C6.07439 8.70132 6.27401 9.10472 6.58415 9.41478C6.89429 9.72484 7.29774 9.92437 7.73239 9.98265C8.16705 10.0409 8.60881 9.95474 8.98968 9.73733L10.5237 11.2727C9.75634 11.7033 8.90101 12 7.99901 12C5.57501 12 3.48701 9.86 2.54034 8.71067C2.28168 8.396 2.15234 8.23933 2.15234 8C2.15234 7.76067 2.28168 7.604 2.54034 7.28933C2.98901 6.74467 3.69501 5.976 4.57101 5.32L6.26101 7.00933Z" fill="black"/>
+                              <path d="M3 2L13.6667 12.6667" stroke="black" stroke-width="1.33333"/>
+                            </svg>
+                          </div>
+                    </div>
+                </div>
+                  
+            </div>
+            </div>
+          <div class="d-grid col-12">
+            <button class="btn btn-color" type="submit">Create Account
+                
+            </button>
+          </div>
+          </form>
+       <div class="loginpolicy">
+        <div class="policy1">By signing in, you agree to the <span>Terms of Service</span> and <span>Privacy policy </span></div>
+        <div class="policy1">© 2022The Skytrails. All rights reserved</div>
+       </div>
+          
+      </div>
+    </div>
+
+
+    <script>
+  const passwordInput = document.getElementById('password');
+  const eyeIcon = document.getElementById('eyeIcon');
+
+  eyeIcon.addEventListener('click', function () {
+      const isPasswordVisible = passwordInput.type === 'text';
+
+      if (isPasswordVisible) {
+          passwordInput.type = 'password';
+          
+          eyeIcon.children[0].style.display = 'block';
+          
+          eyeIcon.children[1].style.display = 'none';
+      } else {
+          passwordInput.type = 'text';
+          
+          eyeIcon.children[0].style.display = 'none';
+          
+          eyeIcon.children[1].style.display = 'block';
+      }
+  });
+</script>
+ 
+{% endblock main-content %}

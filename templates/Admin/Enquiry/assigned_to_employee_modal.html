@@ -1,0 +1,78 @@
+<div class="modal fade" id="exampleModal-{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{% url "update_assign_employee" i.id %}" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Assigned To Employee</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <hr>
+                <div class="modal-body">
+
+                    {% if i.lead_status == "New Lead" %}
+                <label class="custom-form-label" for="">Assigned To Presales Employee</label>
+                <select class="form-select" name="assign_to_employee" id="assign_to_employee">
+                    <option value="0">Select</option>
+                    
+                    {% for employee in presales_employees %}
+                    
+                        <option value="{{ employee.id }}" {% if enquiry.assign_to_employee_id == employee.id %}selected{% endif %}>{{ employee.users }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                    
+                    {% if i.lead_status == "Active" %}
+                <label class="custom-form-label" for="">Assigned To Assesment Employee</label>
+                <select class="form-select" name="assign_to_assesment_employee" id="assign_to_assesment_employee">
+                    <option value="0">Select</option>
+                    
+                    {% for employee in assesment_employee %}
+                    
+                        <option value="{{ employee.id }}" {% if enquiry.assign_to_assesment_employee_id == employee.id %}selected{% endif %}>{{ employee.users }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                {% if i.lead_status == "PreEnrolled" %}
+                <label class="custom-form-label" for="">Assigned To Sales Employee</label>
+                <select class="form-select" name="assign_to_sales_employee" id="assign_to_sales_employee">
+                    <option value="0">Select</option>
+                    
+                    {% for employee in sales_employees %}
+                    
+                        <option value="{{ employee.id }}" {% if enquiry.assign_to_sales_employee_id == employee.id %}selected{% endif %}>{{ employee.users }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                {% if i.lead_status == "Enrolled" %}
+                <label class="custom-form-label" for="">Assigned To Documentation Employee</label>
+                <select class="form-select" name="assign_to_documentation_employee" id="assign_to_documentation_employee">
+                    <option value="0">Select</option>
+                    
+                    {% for employee in documentation_employees %}
+                    
+                        <option value="{{ employee.id }}" {% if enquiry.assign_to_documentation_employee_id == employee.id %}selected{% endif %}>{{ employee.users }}</option>
+                    {% endfor %}
+                </select>
+            
+                {% endif %}
+                {% if i.lead_status == "Inprocess"  %}
+                <label class="custom-form-label" for="">Assigned To VisaTeam Employee</label>
+                <select class="form-select" name="assign_to_visa_team_employee" id="assign_to_visa_team_employee">
+                    <option value="0">Select</option>
+                    
+                    {% for employee in visa_team %}
+                    
+                        <option value="{{ employee.id }}" {% if enquiry.assign_to_visa_team_employee_id == employee.id %}selected{% endif %}>{{ employee.users }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>

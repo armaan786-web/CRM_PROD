@@ -1,0 +1,62 @@
+<div class="modal fade" id="leadstatusupdateModal-{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{% url "agent_lead_updated" i.id %}" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Lead Update</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <hr>
+                <div class="modal-body">
+                    
+                   
+                <label class="custom-form-label" for="">Lead Status</label>
+                <select class="form-select" name="lead_status" id="lead_status">
+                    
+                    {% for lead in lead %}
+                    
+                    <option value="{{lead.0}}" {% if lead.0 == i.lead_status %}selected{% endif %}>
+                        {% if lead.0 == "New Lead" %}
+                        New Lead
+                        {% elif lead.0 == "Active" %}
+                        Active
+                        {% elif lead.0 == "PreEnrolled" %}
+                        PreEnrolled
+                        {% elif lead.0 == "Enrolled" %}
+                        Enrolled
+                        
+                        {% elif lead.0 == "Inprocess" %}
+                        Inprocess
+                        {% elif lead.0 == "Ready To Submit" %}
+                        Ready To Submit
+                        {% elif lead.0 == "Appointment" %}
+                        Appointment
+                        {% elif lead.0 == "Ready To Collection" %}
+                        Ready To Collection
+                        {% elif lead.0 == "Result" %}
+                        Result
+                        {% elif lead.0 == "Delivery" %}
+                        Delivery
+                        {% elif lead.0 == "Reject" %}
+                        Reject
+
+                        {% endif %}
+                    </option>
+                    
+                    {% endfor %}
+                    
+                   
+                </select>
+                
+            
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>

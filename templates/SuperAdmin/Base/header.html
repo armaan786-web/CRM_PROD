@@ -1,0 +1,73 @@
+{% load static %}
+
+<div class="Navbar">
+   <div class="Content">
+     <div class="Logo">
+       <div class="LogoElement">
+         <div class="ClipPathGroup">
+           <div class="Vector" id="black-bg"></div>
+           <div class="Group">
+             <div class="Vector" id="white-bg">
+               <img src="{% static "style/Styling/DashboardDesign/images/Logo.png" %}" alt="" class="img" />
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="Text">
+         <img src="" alt="" />
+       </div>
+     </div>
+     <div class="Cta">
+       <div class="Buttons">
+         <div class="Link">
+           <div class="Text">Notifications</div>
+           <div class="Badge">
+             <div class="Text1">23</div>
+           </div>
+         </div>
+         <div class="Separator"></div>
+         <hr style="border: none; background-color: red; height: 5px" />
+         
+         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <div class="Avatar">
+             <div class="Ph">HS</div>
+           </div>
+         </a>
+           <ul class="dropdown-menu menusss " style="border: none;" aria-labelledby="navbarDropdown">
+             <div class=" w-36 h-36 rounded-md shadow d-flex flex-column justify-content-end inline-flex">
+                 <div class="NavItem  px-4 py-3 d-flex flex-column ">
+                     <div class="name">Harpreet Singh Devgun</div>
+                     <div class="textss">hsd@theskytrails.com</div>
+                     <div class="textss">+91 9999210101</div>
+                     
+                  </div>  
+
+                  <hr class="passwordborder">
+                  <div class="px-3">Password Settings</div>
+                  <hr class="passwordborder">
+                  
+                  
+                 <div class="NavItem itemnav self-stretch h-12  d-flex flex-column justify-content-start align-items-start">
+                    
+                   <a href="{% url "logout" %}" style="border: none;"><div class="NavLink self-stretch px-4  justify-content-start align-items-center gap-2 d-inline-flex">
+                     <div class="Logout w-6 h-6 position-relative">
+                         <div class="d-flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                             <mask id="mask0_18_2657" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
+                               <rect y="0.5" width="24" height="24" fill="#D9D9D9"/>
+                             </mask>
+                             <g mask="url(#mask0_18_2657)">
+                               <path d="M5 21.5C4.45 21.5 3.97917 21.3042 3.5875 20.9125C3.19583 20.5208 3 20.05 3 19.5V5.5C3 4.95 3.19583 4.47917 3.5875 4.0875C3.97917 3.69583 4.45 3.5 5 3.5H12V5.5H5V19.5H12V21.5H5ZM16 17.5L14.625 16.05L17.175 13.5H9V11.5H17.175L14.625 8.95L16 7.5L21 12.5L16 17.5Z" fill="#C81E1E"/>
+                             </g>
+                           </svg></div>
+                     </div>
+                     
+                     <div class="text-sign">Sign Out</div>
+                 </div></a>  
+                 </div>
+             </div>
+             
+           </ul>
+       </div>
+     </div>
+   </div>
+ </div>

@@ -1,0 +1,30 @@
+<div class="modal fade" id="opModal-{{i.id}}" tabindex="-1" aria-labelledby="opModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{% url "update_assigned_op" i.id %}" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="opModalLabel">Assigned To OutsourcePartner</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <hr>
+                <div class="modal-body">
+                <label class="custom-form-label" for="">Assigned To OutsourcePartner</label>
+                <select class="form-select" name="assign_to_outsourcingagent" id="assign_to_outsourcingagent">
+                    <option value="0">Select</option>
+                    
+                    {% for op in outsourcepartner %}
+                    
+                        <option value="{{ op.id }}" {% if enquiry.assign_to_outsourcingagent_id == op.id %}selected{% endif %}>{{ op.users }}</option>
+                    {% endfor %}
+                </select>
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>

@@ -1,0 +1,364 @@
+
+{% load static %}
+<div class="col-md-12">
+    <div class="chatprofile">
+        <div class="chatheadingcontainer">
+            <div class="people-chat">
+                <div class="peoplevalue">
+                    <div class="peopleimg">
+                        <img src="{% static "style/Styling/Bootstrap/img/Avatar.png" %}" alt="">
+                    </div>
+                    <div class="profilename">{{group_name}}</div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="chatcontentbar" id="chat-log">
+            {% for i in chat %}
+            {% if i.message_by == user %}
+            
+           
+            {% if i.attachment %}
+            {% if i.attachment|lower|slice:":28" == "data:application/pdf;base64," %}
+                <div class="chatstart">
+                    <div class="chatname">{{user}}</div>
+                                
+                    <img src="{% static "style/Styling/Bootstrap/img/pdfnw.png" %}" alt="pdf" width="190px;">
+                    <br>
+                    <a href="{{ i.attachment }}" download>
+                    <i class="zmdi zmdi-download"> {{i.filename}} </i>
+                    </a>
+                    {% load humanize %}
+                    <div class="chattime">{{i.msg_time|naturaltime}}</div>
+                </div>
+                <br>
+            {% else %}
+                <div class="chatstart">
+                    <div class="chatname">{{i.message_by}}</div>
+                    <img src="{{ i.attachment }}" alt="" width="190px;">
+                    <br>
+                    <a href="{{ i.attachment }}" download>
+                    <i class="zmdi zmdi-download"> {{i.filename}}</i>
+                    </a>
+                    <p class="chattime">{{i.msg_time|naturaltime}}</p>
+                </div>
+             {% endif %}
+             {% else %}
+             <div class="chatstart">
+                <div class="chatname">{{i.message_by}}</div>
+                <div class="mainchat">{{i.message_content}} <br />
+                    </div>
+                    {% load humanize %}
+                <div class="chattime">{{i.msg_time|naturaltime}}</div>
+            </div>
+
+             {% endif %}
+              
+             <br>
+           
+            
+            <br>
+         
+            
+            {% else %}
+            
+              {% if i.attachment %}
+              {% if i.attachment|lower|slice:":28" == "data:application/pdf;base64," %}
+              <div class="chatend">
+                <div class="chattingending">
+                    <div class="chatname">{{i.message_by}}</div>
+                    <img src="{% static "style/Styling/Bootstrap/img/pdfnw.png" %}" alt="pdf" width="190px;">
+                    <br>
+                    <a href="{{ i.attachment }}" download>
+                    <i class="zmdi zmdi-download"> {{i.filename}}</i>
+                    </a>
+                    
+                    <div class="chattime">{{i.msg_time|naturaltime}}</div>
+                </div>
+
+            </div>
+            
+              {% else %}
+              <div class="chatend">
+                <div class="chattingending">
+                    <div class="chatname">{{i.message_by}}</div>
+                    <img src="{{ i.attachment }}" alt="" width="190px;">
+                    <br>
+                    <a href="{{ i.attachment }}" download>
+                    <i class="zmdi zmdi-download"> {{i.filename}}</i>
+                    </a>
+                    
+                    <div class="chattime">{{i.msg_time|naturaltime}}</div>
+                </div>
+
+            </div>
+            
+              {% endif %}
+              {% else %}
+              <div class="chatend">
+                <div class="chattingending">
+                    <div class="chatname">{{i.message_by}}</div>
+                    <div class="mainchat">{{i.message_content}} <br />
+                        </div>
+                    <div class="chattime">{{i.msg_time|naturaltime}}</div>
+                </div>
+
+            </div>
+            {% endif %}
+           
+
+            {% endif %}
+            {% endfor %}
+
+   
+
+           
+            
+        </div>
+
+
+        <div class="searchbartypetext">
+            <div class="inputtypetext"><input type="text" name="" id="message-input" class="searchbar"></div>
+            <div class="sendfile">
+                <button id="attach-button" class="btn" id="send-button">
+                 <input type="file" id="attachment-input" style="display: none;">
+                <div class="inputfilesvg"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 24 24" fill="none">
+                        <mask id="mask0_119_7041" style="mask-type:alpha" maskUnits="userSpaceOnUse"
+                            x="0" y="0" width="24" height="24">
+                            <rect width="24" height="24" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_119_7041)">
+                            <path
+                                d="M11.5 22C9.96667 22 8.66667 21.4667 7.6 20.4C6.53333 19.3333 6 18.0333 6 16.5V6C6 4.9 6.39167 3.95833 7.175 3.175C7.95833 2.39167 8.9 2 10 2C11.1 2 12.0417 2.39167 12.825 3.175C13.6083 3.95833 14 4.9 14 6V15.5C14 16.2 13.7583 16.7917 13.275 17.275C12.7917 17.7583 12.2 18 11.5 18C10.8 18 10.2083 17.7583 9.725 17.275C9.24167 16.7917 9 16.2 9 15.5V6H10.5V15.5C10.5 15.7833 10.5958 16.0208 10.7875 16.2125C10.9792 16.4042 11.2167 16.5 11.5 16.5C11.7833 16.5 12.0208 16.4042 12.2125 16.2125C12.4042 16.0208 12.5 15.7833 12.5 15.5V6C12.5 5.3 12.2583 4.70833 11.775 4.225C11.2917 3.74167 10.7 3.5 10 3.5C9.3 3.5 8.70833 3.74167 8.225 4.225C7.74167 4.70833 7.5 5.3 7.5 6V16.5C7.5 17.6 7.89167 18.5417 8.675 19.325C9.45833 20.1083 10.4 20.5 11.5 20.5C12.6 20.5 13.5417 20.1083 14.325 19.325C15.1083 18.5417 15.5 17.6 15.5 16.5V6H17V16.5C17 18.0333 16.4667 19.3333 15.4 20.4C14.3333 21.4667 13.0333 22 11.5 22Z"
+                                fill="#071C2C" />
+                        </g>
+                    </svg></div></button>
+                    <button class="btn" id="send-button">
+                <div class="sendbutton"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" viewBox="0 0 16 16" fill="none">
+                        <path
+                            d="M13.9574 8.7152C14.0901 8.64868 14.2017 8.54656 14.2796 8.42026C14.3576 8.29395 14.3989 8.14844 14.3989 8C14.3989 7.85156 14.3576 7.70604 14.2796 7.57974C14.2017 7.45343 14.0901 7.35131 13.9574 7.2848L2.75738 1.6848C2.61851 1.61531 2.46242 1.58774 2.30815 1.60546C2.15388 1.62317 2.0081 1.6854 1.88859 1.78455C1.76908 1.8837 1.68101 2.01549 1.63513 2.16384C1.58924 2.31219 1.58752 2.47069 1.63018 2.62L2.77338 6.62C2.8212 6.78718 2.92218 6.93423 3.06105 7.03888C3.19991 7.14353 3.36909 7.20009 3.54298 7.2L7.19978 7.2C7.41195 7.2 7.61544 7.28428 7.76546 7.43431C7.91549 7.58434 7.99978 7.78782 7.99978 8C7.99978 8.21217 7.91549 8.41565 7.76546 8.56568C7.61544 8.71571 7.41195 8.8 7.19978 8.8L3.54298 8.8C3.36909 8.7999 3.19991 8.85646 3.06105 8.96111C2.92218 9.06577 2.8212 9.21282 2.77338 9.38L1.63098 13.38C1.58824 13.5293 1.58985 13.6877 1.63563 13.8361C1.68141 13.9845 1.76937 14.1163 1.88878 14.2155C2.0082 14.3147 2.1539 14.3771 2.30814 14.3949C2.46237 14.4128 2.61846 14.3853 2.75738 14.316L13.9574 8.716V8.7152Z"
+                            fill="white" />
+                    </svg></div>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <input type="hidden" id="group-name" value="{{chat_group.id }}">
+    <input type="text" value="{{user}}" id="current-user" hidden>
+</div>
+<script>
+function timeAgo(timestamp) {
+    const now = new Date();
+    const messageTime = new Date(timestamp);
+    const seconds = Math.floor((now - messageTime) / 1000);
+
+    const intervals = {
+        year: 31536000,
+        month: 2592000,
+        week: 604800,
+        day: 86400,
+        hour: 3600,
+        minute: 60,
+        second: 1,
+    };
+
+    for (const [unit, secondsInUnit] of Object.entries(intervals)) {
+        const interval = Math.floor(seconds / secondsInUnit);
+
+        if (interval >= 1) {
+            return interval + " " + (interval === 1 ? unit : unit + "s") + " ago";
+        }
+    }
+
+    return "just now";
+}
+
+</script>
+<script>
+    var user = document.getElementById('current-user').value;
+    var groupName = document.getElementById('group-name').value;
+    {% comment %} var groupName = JSON.parse(document.getElementById('group-name').value); {% endcomment %}
+    {% comment %} console.log("ssssssssssss",roomName) {% endcomment %}
+    var ws = new WebSocket(
+                'wss://'
+                + window.location.host
+                + '/ws/chat/'
+                + groupName
+                + '/'
+            );
+    ws.onopen = function () {
+    console.log("WebSocket Connection Open..................")
+   
+    }
+    
+    ws.onmessage = function (event){
+    console.log("Message Recive from server..................")
+    var time = new Date().toLocaleTimeString();
+    const data = JSON.parse(event.data);
+    const chatLogDiv = document.querySelector('#chat-log');
+    if(chatLogDiv){
+        if (data.msg){
+            var newMessage = document.createElement('div');
+            if (data.msg_by === user){
+                newMessage.className = 'chatstart';
+                newMessage.innerHTML = `
+               
+                
+                <div class="chatname">${data.msg_by}</div>
+                <div class="mainchat">${data.msg}<br />
+                </div>
+                    {% load humanize %}
+                <div class="chattime">${timeAgo(time)}</div>
+            `
+             }
+            else{
+                newMessage.className = 'chatend';
+                newMessage.innerHTML = `
+                <div class="chattingending">
+                    <div class="chatname">${data.msg_by}</div>
+                    <div class="mainchat">${data.msg} <br />
+                        </div>
+                    <div class="chattime">${timeAgo(time)}</div>
+                </div>
+                
+                `
+
+            }
+           
+          
+            chatLogDiv.appendChild(newMessage);
+
+           
+            
+        }else if (data.attachment){
+            var attachmentType = data.attachment.data.split(';')[0].split(':')[1];
+            var newAttachment = document.createElement('div');
+            newAttachment.className = 'chatstart';
+            if (data.attachment.msg_by === user){
+                newAttachment.innerHTML = `
+                 <div class="chatname">${data.attachment.msg_by}</div>
+                ${
+               attachmentType === 'application/pdf'
+                   ? `<p><img src="{% static "style/Styling/Bootstrap/img/pdfnw.png" %}" alt="" width="190px;"></p>` // Show PDF icon
+                   : `<p><img src="${data.attachment.data}" alt="" width="190px;"></p>` // Show image
+                }
+                {% comment %} <img src="{% static "style/Styling/Bootstrap/img/pdfnw.png" %}" alt="pdf" width="190px;"> {% endcomment %}
+                    <br>
+                    <a href="${data.attachment.data}" download>
+                    <i class="zmdi zmdi-download"> ${data.attachment.filename} </i>
+                    </a>
+                   
+                    <div class="chattime">${timeAgo(time)}</div>
+                
+                `
+                
+            }
+            
+            
+            else{
+            
+            newAttachment.innerHTML = `
+             <div class="chatend">
+                <div class="chattingending">
+                    <div class="chatname">${data.attachment.msg_by}</div>
+                    ${
+                        attachmentType === 'application/pdf'
+                            ? `<p><img src="{% static "style/Styling/Bootstrap/img/pdfnw.png" %}" alt="" width="190px;"></p>` // Show PDF icon
+                            : `<p><img src="${data.attachment.data}" alt="" width="190px;"></p>` // Show image
+                    }
+                    {% comment %} <img src="${data.attachment.data}" alt="" width="190px;"> {% endcomment %}
+                    <br>
+                    <a href="{{ i.attachment }}" download>
+                    <i class="zmdi zmdi-download"> ${data.attachment.filename}</i>
+                    </a>
+                    
+                    <div class="chattime">${timeAgo(time)}</div>
+                </div>
+
+            </div>
+            
+            `
+            
+            }
+            chatLogDiv.appendChild(newAttachment);
+        }
+        
+    }
+    }
+    ws.onclose = function (){
+    console.log("WebSocket Connection closed unexpectedly..................")
+    }
+
+
+    document.getElementById('send-button').onclick = function (event) {
+       const messageInputDom = document.getElementById('message-input');
+       const message = messageInputDom.value;
+
+       ws.send(JSON.stringify({
+           'msg': message
+       }));
+       messageInputDom.value = '';
+   }
+   
+    document.getElementById('message-input').addEventListener('keydown', function (event) {
+       if (event.key === 'Enter') {
+           event.preventDefault(); // Prevent the newline character from being added to the input field
+           const messageInputDom = document.getElementById('message-input');
+           const message = messageInputDom.value;
+           if (message.trim() !== '') {
+               ws.send(JSON.stringify({
+                   'msg': message
+               }));
+               messageInputDom.value = '';
+               console.log("sssssssssss")
+           }
+       }
+   });
+
+   document.getElementById('attach-button').onclick = function (event) {
+       document.getElementById('attachment-input').click();
+   };
+    document.getElementById('attachment-input').addEventListener('change', function (event) {
+       const fileInput = event.target;
+       const files = fileInput.files;
+   
+       if (files.length > 0) {
+           const file = files[0];
+           const reader = new FileReader();
+   
+           reader.onload = function (e) {
+               const attachmentData = e.target.result;
+   
+               // Send the attachment data to the server
+               ws.send(JSON.stringify({
+                   'attachment': {
+                       'filename': file.name,
+                       'data': attachmentData,
+                   }
+               }));
+           };
+   
+           reader.readAsDataURL(file);
+   
+           // Clear the file input after reading the file
+           fileInput.value = '';
+       }
+   });
+
+
+
+</script>
+{% comment %} 
+<script>
+    $(function () {
+        $("#message-input").emojioneArea({
+            pickerPosition: "bottom"
+        });
+    });
+</script>  {% endcomment %}

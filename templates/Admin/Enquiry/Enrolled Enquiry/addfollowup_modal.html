@@ -1,0 +1,85 @@
+<div class="modal" id="followUpModal1-{{enquiry.id}}" tabindex="-1" role="dialog" aria-labelledby="followUpModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="followUpModalLabel">Create Follow Up</h5>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+
+            </button>
+          </div>
+          <hr>
+          <form method="post" action="{% url 'save_followup' enquiry.id %}">
+            {% csrf_token %}
+          <div class="modal-body">
+            <div class="row formrow">
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Title</label>
+                {{form.title}}
+              </div>
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Enter Description</label>
+                {{form.description}}
+              </div>
+
+            </div>
+            <div class="row formrow">
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Follow Up Date</label>
+                {{form.calendar}}
+              </div>
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Follow Up Time</label>
+                {{form.time}}
+              </div>
+
+            </div>
+            <div class="row formrow">
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Follow Up Status</label>
+                {{form.follow_up_status}}
+              </div>
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="custom-form-label">Priority</label>
+                {{form.priority}}
+              </div>
+
+            </div>
+            <div class="row formrow">
+              <div class="col-md-12">
+                <div class="row">
+                  <label for="exampleFormControlInput1" class="custom-form-label">Add Notes :</label>
+                  <div class="notes-container">
+                    
+                      {{form.remark}}
+
+
+                    
+                    <div class="notes-indicator">
+                      <div class="indicator-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8.00016 3.33333V8M8.00016 8V12.6667M8.00016 8H12.6668M8.00016 8H3.3335"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <hr>
+          <div class="modal-footer">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+              <button class="btn btn-color" type="submit">Confirm
+
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>

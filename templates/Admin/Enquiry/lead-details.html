@@ -1,0 +1,467 @@
+{% extends "Admin/Base/base.html" %}
+{% block main-content %}
+<style>
+    .custom-form-label{
+        margin-bottom:5px;
+    }
+</style>
+<div class="form-container">
+    <div class="custom-container">
+        <div class="icon-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <path
+                        d="M18.0991 9.91073L16.4304 8.24404L10.5899 2.41065C10.4334 2.25442 10.2213 2.16666 10 2.16666C9.77878 2.16666 9.5666 2.25442 9.41013 2.41065L3.56962 8.24404L1.9009 9.91073C1.74892 10.0679 1.66482 10.2784 1.66672 10.4969C1.66862 10.7154 1.75637 10.9244 1.91107 11.0789C2.06576 11.2334 2.27503 11.3211 2.4938 11.323C2.71256 11.3249 2.92332 11.2409 3.08068 11.0891L3.32515 10.8449V17.1666C3.32515 17.6087 3.50096 18.0326 3.81391 18.3452C4.12685 18.6577 4.5513 18.8333 4.99387 18.8333H7.49695C7.71823 18.8333 7.93045 18.7455 8.08693 18.5892C8.2434 18.433 8.3313 18.221 8.3313 18V14.6666C8.3313 14.4456 8.41921 14.2336 8.57568 14.0774C8.73215 13.9211 8.94438 13.8333 9.16566 13.8333H10.8344C11.0557 13.8333 11.2679 13.9211 11.4244 14.0774C11.5808 14.2336 11.6687 14.4456 11.6687 14.6666V18C11.6687 18.221 11.7566 18.433 11.9131 18.5892C12.0696 18.7455 12.2818 18.8333 12.5031 18.8333H15.0062C15.4487 18.8333 15.8732 18.6577 16.1861 18.3452C16.4991 18.0326 16.6749 17.6087 16.6749 17.1666V10.8449L16.9194 11.0891C17.0767 11.2409 17.2875 11.3249 17.5062 11.323C17.725 11.3211 17.9343 11.2334 18.089 11.0789C18.2437 10.9244 18.3314 10.7154 18.3333 10.4969C18.3352 10.2784 18.2511 10.0679 18.0991 9.91073Z"
+                        fill="#374151" />
+                </svg>
+            </div>
+
+        </div>
+        <div class="text-container">
+            <a href="{% url "admin_dashboard" %}" style="text-decoration: none;">
+                <div class="text">Dashboard</div>
+            </a>
+        </div>
+        <div class="icon-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <path
+                        d="M7.78916 16.3333C7.56988 16.3333 7.35554 16.2649 7.17323 16.1369C6.99092 16.0088 6.84882 15.8269 6.76491 15.614C6.68101 15.4011 6.65905 15.1668 6.70181 14.9408C6.74458 14.7148 6.85015 14.5072 7.00519 14.3443L10.6567 10.5071L7.00519 6.67003C6.89928 6.56254 6.8148 6.43396 6.75668 6.2918C6.69857 6.14964 6.66798 5.99674 6.6667 5.84202C6.66542 5.6873 6.69348 5.53386 6.74923 5.39066C6.80499 5.24745 6.88732 5.11735 6.99144 5.00795C7.09556 4.89854 7.21936 4.81202 7.35564 4.75343C7.49192 4.69484 7.63794 4.66536 7.78517 4.6667C7.93241 4.66804 8.07792 4.70019 8.2132 4.76126C8.34849 4.82233 8.47085 4.9111 8.57314 5.02239L13.0087 9.68333C13.2165 9.90184 13.3333 10.1982 13.3333 10.5071C13.3333 10.8161 13.2165 11.1125 13.0087 11.331L8.57314 15.9919C8.36523 16.2104 8.08323 16.3333 7.78916 16.3333Z"
+                        fill="#9CA3AF" />
+                </svg>
+            </div>
+        </div>
+        <div class="text-container">
+            <div class="text">Leads</div>
+        </div>
+        <div class="icon-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <path
+                        d="M7.78916 16.3333C7.56988 16.3333 7.35554 16.2649 7.17323 16.1369C6.99092 16.0088 6.84882 15.8269 6.76491 15.614C6.68101 15.4011 6.65905 15.1668 6.70181 14.9408C6.74458 14.7148 6.85015 14.5072 7.00519 14.3443L10.6567 10.5071L7.00519 6.67003C6.89928 6.56254 6.8148 6.43396 6.75668 6.2918C6.69857 6.14964 6.66798 5.99674 6.6667 5.84202C6.66542 5.6873 6.69348 5.53386 6.74923 5.39066C6.80499 5.24745 6.88732 5.11735 6.99144 5.00795C7.09556 4.89854 7.21936 4.81202 7.35564 4.75343C7.49192 4.69484 7.63794 4.66536 7.78517 4.6667C7.93241 4.66804 8.07792 4.70019 8.2132 4.76126C8.34849 4.82233 8.47085 4.9111 8.57314 5.02239L13.0087 9.68333C13.2165 9.90184 13.3333 10.1982 13.3333 10.5071C13.3333 10.8161 13.2165 11.1125 13.0087 11.331L8.57314 15.9919C8.36523 16.2104 8.08323 16.3333 7.78916 16.3333Z"
+                        fill="#9CA3AF" />
+                </svg>
+            </div>
+        </div>
+        <div class="text-container">
+            <div class="text" style="color: #6B7280;">View all Leads</div>
+        </div>
+    </div>
+    <div class="customs-container">
+        <div class="custom-box">
+            <div class="custom-text">View All Lead</div>
+        </div>
+        <div class="tabBox">
+            <a href="{% url "admin_new_leads_details" %}">
+                <div class="tabOne">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none"
+                        style="padding-right: 2px;">
+                        <path
+                            d="M6.25016 4.66659V1.41992C5.92485 1.5099 5.62806 1.68183 5.38816 1.91925L3.50283 3.80459C3.26588 4.04485 3.09403 4.34151 3.00349 4.66659H6.25016Z"
+                            fill="#233876" />
+                        <path
+                            d="M12.2942 1.33325H7.58349V4.66659C7.58349 5.02021 7.44302 5.35935 7.19297 5.60939C6.94292 5.85944 6.60378 5.99992 6.25016 5.99992H2.91683V13.3333C2.91148 13.6809 3.0442 14.0165 3.28589 14.2664C3.52759 14.5164 3.85853 14.6603 4.20616 14.6666H12.2942C12.6418 14.6603 12.9727 14.5164 13.2144 14.2664C13.4561 14.0165 13.5888 13.6809 13.5835 13.3333V2.66659C13.5888 2.31894 13.4561 1.98335 13.2144 1.73341C12.9727 1.48347 12.6418 1.33956 12.2942 1.33325ZM10.2942 11.3333H6.13549C5.95868 11.3333 5.78911 11.263 5.66409 11.138C5.53907 11.013 5.46883 10.8434 5.46883 10.6666C5.46883 10.4898 5.53907 10.3202 5.66409 10.1952C5.78911 10.0702 5.95868 9.99992 6.13549 9.99992H10.2942C10.471 9.99992 10.6405 10.0702 10.7656 10.1952C10.8906 10.3202 10.9608 10.4898 10.9608 10.6666C10.9608 10.8434 10.8906 11.013 10.7656 11.138C10.6405 11.263 10.471 11.3333 10.2942 11.3333ZM10.2942 8.66659H6.13549C5.95868 8.66659 5.78911 8.59635 5.66409 8.47132C5.53907 8.3463 5.46883 8.17673 5.46883 7.99992C5.46883 7.82311 5.53907 7.65354 5.66409 7.52851C5.78911 7.40349 5.95868 7.33325 6.13549 7.33325H10.2942C10.471 7.33325 10.6405 7.40349 10.7656 7.52851C10.8906 7.65354 10.9608 7.82311 10.9608 7.99992C10.9608 8.17673 10.8906 8.3463 10.7656 8.47132C10.6405 8.59635 10.471 8.66659 10.2942 8.66659Z"
+                            fill="#233876" />
+                    </svg>All Leads
+                </div>
+            </a>
+            <hr>
+            <a href="{% url "Enrolled_leads" %}">
+                <div class="tabTwo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none"
+                        style="padding-right: 2px;">
+                        <path
+                            d="M6.75 4.66659V1.41992C6.42867 1.51192 6.13067 1.67592 5.888 1.91925L4.00267 3.80459C3.76001 4.04725 3.59601 4.34525 3.50334 4.66659H6.75Z"
+                            fill="#233876" />
+                        <path
+                            d="M12.794 1.33325H8.08334V4.66659C8.08334 5.40192 7.48534 5.99992 6.75 5.99992H3.41667V13.3333C3.41667 14.0686 3.99467 14.6666 4.706 14.6666H12.7947C13.5053 14.6666 14.0833 14.0686 14.0833 13.3333V2.66659C14.0833 1.93125 13.5053 1.33325 12.794 1.33325ZM11.2213 8.47125L8.55467 11.1379C8.42467 11.2679 8.254 11.3333 8.08334 11.3333C7.91267 11.3333 7.742 11.2679 7.612 11.1379L6.27867 9.80459C6.01801 9.54392 6.01801 9.12259 6.27867 8.86192C6.53934 8.60125 6.96067 8.60125 7.22134 8.86192L8.08334 9.72392L10.2787 7.52859C10.5393 7.26792 10.9607 7.26792 11.2213 7.52859C11.482 7.78925 11.482 8.21059 11.2213 8.47125Z"
+                            fill="#233876" />
+                    </svg>Enrolled Leads
+                </div>
+            </a>
+        </div>
+        <div class="tabsBox">
+            <a href="{% url "admin_new_leads_details" %}">
+            <div class="tabsOne">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                    style="margin-right: 2px;">
+                    <path
+                        d="M2.58337 4H1.75004C1.51992 4 1.33337 4.17909 1.33337 4.4V5.2C1.33337 5.42091 1.51992 5.6 1.75004 5.6H2.58337C2.81349 5.6 3.00004 5.42091 3.00004 5.2V4.4C3.00004 4.17909 2.81349 4 2.58337 4Z"
+                        fill="#111928" />
+                    <path
+                        d="M2.58337 7.2H1.75004C1.51992 7.2 1.33337 7.37909 1.33337 7.6V8.4C1.33337 8.62091 1.51992 8.8 1.75004 8.8H2.58337C2.81349 8.8 3.00004 8.62091 3.00004 8.4V7.6C3.00004 7.37909 2.81349 7.2 2.58337 7.2Z"
+                        fill="#111928" />
+                    <path
+                        d="M2.58337 10.4H1.75004C1.51992 10.4 1.33337 10.5791 1.33337 10.8V11.6C1.33337 11.8209 1.51992 12 1.75004 12H2.58337C2.81349 12 3.00004 11.8209 3.00004 11.6V10.8C3.00004 10.5791 2.81349 10.4 2.58337 10.4Z"
+                        fill="#111928" />
+                    <path
+                        d="M13.8334 5.6H5.50004C5.27903 5.6 5.06707 5.51571 4.91079 5.36569C4.75451 5.21566 4.66671 5.01217 4.66671 4.8C4.66671 4.58783 4.75451 4.38434 4.91079 4.23431C5.06707 4.08429 5.27903 4 5.50004 4H13.8334C14.0544 4 14.2664 4.08429 14.4226 4.23431C14.5789 4.38434 14.6667 4.58783 14.6667 4.8C14.6667 5.01217 14.5789 5.21566 14.4226 5.36569C14.2664 5.51571 14.0544 5.6 13.8334 5.6Z"
+                        fill="#111928" />
+                    <path
+                        d="M13.8334 8.8H5.50004C5.27903 8.8 5.06707 8.71571 4.91079 8.56569C4.75451 8.41566 4.66671 8.21217 4.66671 8C4.66671 7.78783 4.75451 7.58434 4.91079 7.43431C5.06707 7.28429 5.27903 7.2 5.50004 7.2H13.8334C14.0544 7.2 14.2664 7.28429 14.4226 7.43431C14.5789 7.58434 14.6667 7.78783 14.6667 8C14.6667 8.21217 14.5789 8.41566 14.4226 8.56569C14.2664 8.71571 14.0544 8.8 13.8334 8.8Z"
+                        fill="#111928" />
+                    <path
+                        d="M13.8334 12H5.50004C5.27903 12 5.06707 11.9157 4.91079 11.7657C4.75451 11.6157 4.66671 11.4122 4.66671 11.2C4.66671 10.9878 4.75451 10.7843 4.91079 10.6343C5.06707 10.4843 5.27903 10.4 5.50004 10.4H13.8334C14.0544 10.4 14.2664 10.4843 14.4226 10.6343C14.5789 10.7843 14.6667 10.9878 14.6667 11.2C14.6667 11.4122 14.5789 11.6157 14.4226 11.7657C14.2664 11.9157 14.0544 12 13.8334 12Z"
+                        fill="#111928" />
+                </svg>List View
+            </div>
+        </a>
+            <hr>
+            <a href="{% url "admin_grid_leads_details" %}">
+            <div class="tabsTwo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                    style="margin-right: 2px;">
+                    <path
+                        d="M6.09533 2H3.238C2.55427 2 2 2.55427 2 3.238V6.09533C2 6.77906 2.55427 7.33333 3.238 7.33333H6.09533C6.77906 7.33333 7.33333 6.77906 7.33333 6.09533V3.238C7.33333 2.55427 6.77906 2 6.09533 2Z"
+                        fill="#111928" />
+                    <path
+                        d="M12.762 2H9.90467C9.22094 2 8.66667 2.55427 8.66667 3.238V6.09533C8.66667 6.77906 9.22094 7.33333 9.90467 7.33333H12.762C13.4457 7.33333 14 6.77906 14 6.09533V3.238C14 2.55427 13.4457 2 12.762 2Z"
+                        fill="#111928" />
+                    <path
+                        d="M6.09533 8.66667H3.238C2.55427 8.66667 2 9.22094 2 9.90467V12.762C2 13.4457 2.55427 14 3.238 14H6.09533C6.77906 14 7.33333 13.4457 7.33333 12.762V9.90467C7.33333 9.22094 6.77906 8.66667 6.09533 8.66667Z"
+                        fill="#111928" />
+                    <path
+                        d="M12.762 8.66667H9.90467C9.22094 8.66667 8.66667 9.22094 8.66667 9.90467V12.762C8.66667 13.4457 9.22094 14 9.90467 14H12.762C13.4457 14 14 13.4457 14 12.762V9.90467C14 9.22094 13.4457 8.66667 12.762 8.66667Z"
+                        fill="#111928" />
+                </svg>Grid View
+            </div>
+        </a>
+        </div>
+
+    </div>
+    <form action="{% url "search_enquiries" %}" method="post">
+        {% csrf_token %}
+        <div class="search">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="custom-form-label">Enquiry Id</label>
+                    <input type="text" class="form-control" name="enquiry_id" id="enquiry_id" placeholder="Enquiry Id">
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Date Of Birth</label>
+                    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth">
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Passport No</label>
+                    <input type="text" class="form-control" name="passport_no" id="passport_no" placeholder="Passport No">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="custom-form-label">Product</label>
+                    <input type="text" class="form-control" name="package" id="package" placeholder="Product Name">
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Lead Status</label>
+                    <select name="lead_status" id="lead_status" class="form-select">
+                        <option>Select</option>
+                        <option value="New Lead">New Lead</option>
+                        <option value="Active">Active</option>
+                        <option value="PreEnrolled">PreEnrolled</option>
+                        <option value="Enrolled">Enrolled</option>
+                        <option value="Inprocess">Inprocess</option>
+                        <option value="Ready To Submit">Ready To Submit</option>
+                        <option value="Appointment">Appointment</option>
+                        <option value="Ready To Collection">Ready To Collection</option>
+                        <option value="Result">Result</option>
+                        <option value="Delivery">Delivery</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Colour</label>
+                    <select name="color_code" id="color_code" class="form-select">
+                        <option>Select</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Blue">Blue</option>
+                        <option value="White">White</option>
+                        <option value="Red">Red</option>
+                        <option value="Green">Green</option>
+                        
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="custom-form-label">Visa Country</label>
+                    <input type="text" class="form-control" name="Visa_country" id="Visa_country" placeholder="Visa Country">
+                </div>
+
+                
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="custom-form-label">Created By</label>
+                    <input type="text" class="form-control" name="created_by" id="created_by" placeholder="Created By">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-color" style="margin-top: 20px;">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="table-container">
+        <div class="table-responsive">
+            <table id="example" class="display">
+                <thead>
+                    <tr>
+                        <th>SR NO</th>
+                        <th>ACTION</th>
+                        <th>ENQUIRY No.</th>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>Passport No</th>
+                        <th>Registered No.</th>
+                        <th>Updated on</th>
+                        <th>VISA COUNTRY</th>
+                        <th>VISA Category - SUB CATEGORY</th>
+                        <th>VISA TYPE</th>
+                        <th>Package Name</th>
+                        <th>CREATED BY</th>
+                        <th>Assigned TO</th>
+                        <th>Update Assigned To</th>
+                        <th>Assign to Agent/OP</th>
+                        <th>LEAD status</th>
+                        <th>Lead Updated</th>
+                        <th>Appointment</th>
+                        <th>Appointment Status</th>
+                        <th>NOTES</th>
+                        <th>Colour Code</th>
+                        <th>ACTION</th>
+                        {% comment %} <th>ddddd</th> {% endcomment %}
+                        {% comment %} <th>Approval Status</th> {% endcomment %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in enquiry %}
+                    {% if i.archive == False %}
+                    <tr style="background-color: {% if i.color_code == 'Grey' %}#efe5e5{% elif i.color_code == 'Blue' %}#89CFF0{% elif i.color_code == 'White' %}#FAF9F6{% elif i.color_code == 'Red' %}#ff9090{% elif i.color_code == 'Green' %}#9cc599{% else %}Transparent{% endif %};">
+                        <td>{{forloop.counter}}</td>
+                        <td>
+                            <a href="{% url "edit_enrolled_application" i.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M8.00004 3.33337C4.40804 3.33337 1.33337 6.89071 1.33337 8.00004C1.33337 9.16137 3.69737 12.6667 8.00004 12.6667C12.3027 12.6667 14.6667 9.16137 14.6667 8.00004C14.6667 6.89071 11.592 3.33337 8.00004 3.33337ZM8.00004 10C7.60448 10 7.2178 9.88274 6.8889 9.66298C6.56 9.44322 6.30366 9.13086 6.15228 8.76541C6.00091 8.39996 5.9613 7.99782 6.03847 7.60986C6.11564 7.2219 6.30612 6.86553 6.58583 6.58583C6.86553 6.30612 7.2219 6.11564 7.60986 6.03847C7.99782 5.9613 8.39996 6.00091 8.76541 6.15228C9.13086 6.30366 9.44322 6.56 9.66298 6.8889C9.88274 7.2178 10 7.60448 10 8.00004C10 8.53047 9.78933 9.03918 9.41426 9.41425C9.03918 9.78933 8.53047 10 8.00004 10Z"
+                                        fill="#1F2A37" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>{{i.enquiry_number}}</td>
+                        <td>{{i.FirstName}} {{i.LastName}}</td>
+                        <td>{{i.Dob}}</td>
+                        <td>{{i.passport_no}}</td>
+                        <td>{{i.registered_on}}</td>
+                        <td>{{i.last_updated_on}}</td>
+                        <td>{{i.Visa_country}}</td>
+                        <td>{{i.Visa_category}}</td>
+                        <td>{{i.Visa_type}}</td>
+                        <td>{{i.Package}}</td>
+                        <td>{{i.created_by}}</td>
+
+                        <td>
+                            {% if i.assign_to_outsourcingagent %}
+                            <b>{{i.assign_to_outsourcingagent.users}}</b>(OP)
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+                            {% if i.assign_to_agent %}
+                            <b>{{i.assign_to_agent.users}}</b>(AGENT)
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+                            {% if i.assign_to_employee %}
+                            <b>{{i.assign_to_employee.users.first_name }} {{i.assign_to_employee.users.last_name}}</b>
+                            ({{i.assign_to_employee.department}})
+                            
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+
+                            {% if i.assign_to_assesment_employee %}
+                            <b>{{i.assign_to_assesment_employee.users.first_name }} {{i.assign_to_assesment_employee.users.last_name}}</b>
+                            ({{i.assign_to_assesment_employee.department}})
+                            
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+                            {% if i.assign_to_sales_employee %}
+                            <b>{{i.assign_to_sales_employee.users.first_name }} {{i.assign_to_sales_employee.users.last_name}}</b>
+                            ({{i.assign_to_sales_employee.department}})
+                            
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+                            {% if i.assign_to_documentation_employee %}
+                            <b>{{i.assign_to_documentation_employee.users.first_name }} {{i.assign_to_documentation_employee.users.last_name}}</b>
+                            ({{i.assign_to_documentation_employee.department}})
+                            
+                            {% else %}
+                            
+                            {% endif %}
+                            <br>
+                            {% if i.assign_to_visa_team_employee %}
+                            <b>{{i.assign_to_visa_team_employee.users.first_name }} {{i.assign_to_visa_team_employee.users.last_name}}</b>
+                            ({{i.assign_to_visa_team_employee.department}})
+                            <br>
+                            {% else %}
+                            
+                            {% endif %}
+                            
+                            
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{i.id}}">
+                                Assigned
+                              </button>
+
+                              {% include "Admin/Enquiry/assigned_to_employee_modal.html" %}
+                        </td>
+                        <td>
+                            
+                            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#agentModal-{{i.id}}" style="background-color: darkcyan; color:white;">
+                                Assigned To Agent
+                              </button><br><br>
+                              {% include "Admin/Enquiry/assigned_to_agent_modal.html" %}
+                             
+                              
+                              <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#opModal-{{i.id}}" style="background-color: darkcyan; color:white;">
+                                Assigned To OP
+                              </button>
+                              {% include "Admin/Enquiry/assigned_to_op_modal.html" %}
+                           
+                        </td>
+                        <td>
+                            <span class="badge rounded-pill1">{{i.lead_status}}</span>
+                        </td>
+                        <td>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#leadstatusupdateModal-{{i.id}}">
+                                Update
+                              </button>
+                              {% include "Admin/Enquiry/lead_status_update_modal.html" %}
+                           
+                            
+                        </td>
+                        <td>
+
+                            
+                            {% if i.lead_status == "Appointment" %}
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addappointment{{i.id}}"">Add Appointment</button>
+                            
+                            {% endif %}
+    
+                            
+                            {% if i.enqappointment_set.exists %}
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal-{{i.id}}" data-bs-whatever="@getbootstrap"  style="margin-top:4px;">View Appointment</button>
+                            {% endif %}
+    
+                            {% if i.enqappointment_set.exists %}
+                                {% if i.enqappointment_set.last.status == "Done" %}
+                                    {% comment %} <button class="btn btn-info" style="margin-top:2px; width:180px;" disabled>Appointment Done</button> {% endcomment %}
+                                {% elif dep == "Sales" %}
+                                <a href="{% url "appointment_done" i.id %}"><button class="btn btn-info" style="margin-top:2px; width:180px;">Appointment Done</button></a>
+                                
+                                {% endif %}
+                            {% else %}
+                                <p>No appointments available</p>
+                            {% endif %}
+    
+                               
+                             {% include "Admin/Enquiry/view_appointment_modal.html" %}
+                             {% include "Admin/Enquiry/add_appointment_lead_modal.html" %}
+                            </td>
+                            <td>
+                             {% if i.enqappointment_set.exists %}
+                             <span class="badge rounded-pill text-bg-success">{{ i.enqappointment_set.last.status }}</span>
+                             {% endif %}
+                            </td>
+
+                        <td>
+                            <div class="add-notes-container answerclass" data-bs-toggle="modal"
+                                data-bs-target="#addnotesModal-{{i.id}}">
+                                <div class="addnotes-label ">Add notes</div>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M7.99992 3.33337V8.00004M7.99992 8.00004V12.6667M7.99992 8.00004H12.6666M7.99992 8.00004H3.33325"
+                                        stroke="#1A56DB" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+
+                            </div>
+                            <div class="add-notes-container answerclass" data-bs-toggle="modal"
+                                data-bs-target="#viewallnotes-{{i.id}}">
+                                <div class="addnotes-label" style="color: #0E9F6E;">View notes</div>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M1.83325 8.00004C1.83325 7.96304 1.85009 7.86097 1.92873 7.68535C2.00351 7.51832 2.11984 7.31643 2.27873 7.09057C2.59625 6.63925 3.06293 6.12175 3.64213 5.63276C4.80844 4.64812 6.36445 3.83337 7.99992 3.83337C9.63539 3.83337 11.1914 4.64812 12.3577 5.63276C12.9369 6.12175 13.4036 6.63925 13.7211 7.09057C13.88 7.31643 13.9963 7.51832 14.0711 7.68535C14.1497 7.86097 14.1666 7.96304 14.1666 8.00004C14.1666 8.15735 14.0719 8.50092 13.7988 8.96597C13.5364 9.41296 13.139 9.9206 12.6113 10.3981C11.5582 11.3511 10.0071 12.1667 7.99992 12.1667C5.99278 12.1667 4.44165 11.3511 3.38857 10.3981C2.86086 9.9206 2.46348 9.41296 2.20102 8.96597C1.92796 8.50092 1.83325 8.15735 1.83325 8.00004ZM6.61099 10.0787C7.02212 10.3534 7.50547 10.5 7.99992 10.5C8.66296 10.5 9.29885 10.2366 9.76769 9.76781C10.2365 9.29897 10.4999 8.66308 10.4999 8.00004C10.4999 7.50559 10.3533 7.02224 10.0786 6.61112C9.80389 6.19999 9.41344 5.87956 8.95663 5.69034C8.49981 5.50112 7.99715 5.45161 7.51219 5.54808C7.02724 5.64454 6.58178 5.88264 6.23215 6.23227C5.88252 6.58191 5.64442 7.02736 5.54796 7.51231C5.45149 7.99727 5.501 8.49993 5.69022 8.95675C5.87944 9.41356 6.19987 9.80401 6.61099 10.0787Z"
+                                        fill="#0E9F6E" stroke="#0E9F6E" />
+                                </svg>
+
+
+                            </div>
+
+                        </td>
+                        <td>
+                            {% if i.color_code %}
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#colorModal-{{i.id}}">
+                                {{i.color_code}}
+                              </button>
+                              {% else %}
+                              <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#colorModal-{{i.id}}">
+                                Colour
+                              </button>
+                              {% endif %}
+                              {% include "Admin/Enquiry/color_modal.html" %}
+                        </td>
+                        <td>
+                            <div class="row" style="display: flex;">
+
+                                <div class="col-md-6">
+                                    <a href="{% url "delete_and_archive" i.id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M20 6.21053H16V4.10526C16 3.54691 15.7893 3.01143 15.4142 2.61662C15.0391 2.2218 14.5304 2 14 2H10C9.46957 2 8.96086 2.2218 8.58579 2.61662C8.21071 3.01143 8 3.54691 8 4.10526V6.21053H4C3.73478 6.21053 3.48043 6.32143 3.29289 6.51884C3.10536 6.71624 3 6.98398 3 7.26316C3 7.54233 3.10536 7.81007 3.29289 8.00748C3.48043 8.20489 3.73478 8.31579 4 8.31579H5V19.8947C5 20.4531 5.21071 20.9886 5.58579 21.3834C5.96086 21.7782 6.46957 22 7 22H17C17.5304 22 18.0391 21.7782 18.4142 21.3834C18.7893 20.9886 19 20.4531 19 19.8947V8.31579H20C20.2652 8.31579 20.5196 8.20489 20.7071 8.00748C20.8946 7.81007 21 7.54233 21 7.26316C21 6.98398 20.8946 6.71624 20.7071 6.51884C20.5196 6.32143 20.2652 6.21053 20 6.21053ZM10 4.10526H14V6.21053H10V4.10526ZM11 17.7895C11 18.0686 10.8946 18.3364 10.7071 18.5338C10.5196 18.7312 10.2652 18.8421 10 18.8421C9.73478 18.8421 9.48043 18.7312 9.29289 18.5338C9.10536 18.3364 9 18.0686 9 17.7895V10.4211C9 10.1419 9.10536 9.87414 9.29289 9.67673C9.48043 9.47932 9.73478 9.36842 10 9.36842C10.2652 9.36842 10.5196 9.47932 10.7071 9.67673C10.8946 9.87414 11 10.1419 11 10.4211V17.7895ZM15 17.7895C15 18.0686 14.8946 18.3364 14.7071 18.5338C14.5196 18.7312 14.2652 18.8421 14 18.8421C13.7348 18.8421 13.4804 18.7312 13.2929 18.5338C13.1054 18.3364 13 18.0686 13 17.7895V10.4211C13 10.1419 13.1054 9.87414 13.2929 9.67673C13.4804 9.47932 13.7348 9.36842 14 9.36842C14.2652 9.36842 14.5196 9.47932 14.7071 9.67673C14.8946 9.87414 15 10.1419 15 10.4211V17.7895Z"
+                                                fill="#9B1C1C" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        
+                       
+                    </tr>
+                    {% endif %}
+                    
+                    {% include "Admin/Enquiry/add_notes_modal.html" %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% for i in enquiry %}
+{% include "Admin/Enquiry/view_notes_modal.html" %}
+{% endfor %}
+
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script>
+ alertify.set('notifier','position', 'top-right');
+ alertify.success('{{ message }}');
+</script>
+{% endif %}
+{% endfor %}
+{% endblock main-content %}

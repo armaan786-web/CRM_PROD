@@ -1,0 +1,153 @@
+{% load static %}
+<style>
+  .active-list {
+    display: block;
+  }
+
+  .agent-list {
+    display: none;
+  }
+</style>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Total Active Users
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <hr />
+      <div class="modal-body">
+        <div class="customs-container" style="justify-content: space-evenly">
+          <div class="tabBox">
+            <div class="tabOne" onclick="showActiveList()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                style="padding-right: 2px"
+              >
+                <path
+                  d="M6.25016 4.66659V1.41992C5.92485 1.5099 5.62806 1.68183 5.38816 1.91925L3.50283 3.80459C3.26588 4.04485 3.09403 4.34151 3.00349 4.66659H6.25016Z"
+                  fill="#233876"
+                />
+                <path
+                  d="M12.2942 1.33325H7.58349V4.66659C7.58349 5.02021 7.44302 5.35935 7.19297 5.60939C6.94292 5.85944 6.60378 5.99992 6.25016 5.99992H2.91683V13.3333C2.91148 13.6809 3.0442 14.0165 3.28589 14.2664C3.52759 14.5164 3.85853 14.6603 4.20616 14.6666H12.2942C12.6418 14.6603 12.9727 14.5164 13.2144 14.2664C13.4561 14.0165 13.5888 13.6809 13.5835 13.3333V2.66659C13.5888 2.31894 13.4561 1.98335 13.2144 1.73341C12.9727 1.48347 12.6418 1.33956 12.2942 1.33325ZM10.2942 11.3333H6.13549C5.95868 11.3333 5.78911 11.263 5.66409 11.138C5.53907 11.013 5.46883 10.8434 5.46883 10.6666C5.46883 10.4898 5.53907 10.3202 5.66409 10.1952C5.78911 10.0702 5.95868 9.99992 6.13549 9.99992H10.2942C10.471 9.99992 10.6405 10.0702 10.7656 10.1952C10.8906 10.3202 10.9608 10.4898 10.9608 10.6666C10.9608 10.8434 10.8906 11.013 10.7656 11.138C10.6405 11.263 10.471 11.3333 10.2942 11.3333ZM10.2942 8.66659H6.13549C5.95868 8.66659 5.78911 8.59635 5.66409 8.47132C5.53907 8.3463 5.46883 8.17673 5.46883 7.99992C5.46883 7.82311 5.53907 7.65354 5.66409 7.52851C5.78911 7.40349 5.95868 7.33325 6.13549 7.33325H10.2942C10.471 7.33325 10.6405 7.40349 10.7656 7.52851C10.8906 7.65354 10.9608 7.82311 10.9608 7.99992C10.9608 8.17673 10.8906 8.3463 10.7656 8.47132C10.6405 8.59635 10.471 8.66659 10.2942 8.66659Z"
+                  fill="#233876"
+                /></svg
+              >Online Employee
+            </div>
+
+            <hr />
+
+            <div class="tabTwo" onclick="showAgentList()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                style="padding-right: 2px"
+              >
+                <path
+                  d="M6.75 4.66659V1.41992C6.42867 1.51192 6.13067 1.67592 5.888 1.91925L4.00267 3.80459C3.76001 4.04725 3.59601 4.34525 3.50334 4.66659H6.75Z"
+                  fill="#233876"
+                />
+                <path
+                  d="M12.794 1.33325H8.08334V4.66659C8.08334 5.40192 7.48534 5.99992 6.75 5.99992H3.41667V13.3333C3.41667 14.0686 3.99467 14.6666 4.706 14.6666H12.7947C13.5053 14.6666 14.0833 14.0686 14.0833 13.3333V2.66659C14.0833 1.93125 13.5053 1.33325 12.794 1.33325ZM11.2213 8.47125L8.55467 11.1379C8.42467 11.2679 8.254 11.3333 8.08334 11.3333C7.91267 11.3333 7.742 11.2679 7.612 11.1379L6.27867 9.80459C6.01801 9.54392 6.01801 9.12259 6.27867 8.86192C6.53934 8.60125 6.96067 8.60125 7.22134 8.86192L8.08334 9.72392L10.2787 7.52859C10.5393 7.26792 10.9607 7.26792 11.2213 7.52859C11.482 7.78925 11.482 8.21059 11.2213 8.47125Z"
+                  fill="#233876"
+                /></svg
+              >Online Agents / OP
+            </div>
+          </div>
+        </div>
+        <div class="active-list">
+          {% for i in active_employee %}
+          <ul>
+            <div class="Avatar" style="background-color: #d1d5db">
+              <div class="Ph"><b>{{i.generate_initials}}</b></div>
+            </div>
+            &nbsp; {{i}}
+          </ul>
+          <div style="margin-top: -33px; padding-left: 52px">
+            <img src="{% static "style/Styling/Bootstrap/img/Notification dot.svg" %}" alt="" class="onlinegreen" width:"2px;" />
+          </div>
+          {% endfor %}
+        </div>
+        <div class="agent-list">
+          {% for i in active_agent %}
+          <ul>
+            <div class="Avatar" style="background-color: #d1d5db">
+              <div class="Ph">
+                <b>{{i.generate_initials}}</b>
+              </div>
+            </div>
+
+            &nbsp; {{i}}
+          </ul>
+          <div style="margin-top: -33px; padding-left: 52px">
+            <img src="{% static "style/Styling/Bootstrap/img/Notification dot.svg" %}" alt="" class="onlinegreen" width:"2px;" />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showActiveList() {
+    var activeList = document.querySelector(".active-list");
+    var agentList = document.querySelector(".agent-list");
+    var tabOne =
+      document.querySelector(".tabOne") || document.querySelector(".tabOnes");
+    var tabTwo =
+      document.querySelector(".tabTwo") || document.querySelector(".tabTwos");
+
+    if (activeList && agentList && tabOne && tabTwo) {
+      activeList.style.display = "block";
+      agentList.style.display = "none";
+
+      // Add or remove classes for tabs
+      tabOne.classList.remove("tabOnes");
+      tabTwo.classList.remove("tabTwos");
+      tabOne.classList.add("tabOne");
+      tabTwo.classList.add("tabTwo");
+    }
+  }
+
+  function showAgentList() {
+    var activeList = document.querySelector(".active-list");
+    var agentList = document.querySelector(".agent-list");
+    var tabOne = document.querySelector(".tabOne");
+    var tabTwo = document.querySelector(".tabTwo");
+
+    if (activeList && agentList && tabOne && tabTwo) {
+      activeList.style.display = "none";
+      agentList.style.display = "block";
+
+      // Add or remove classes for tabs
+      tabOne.classList.remove("tabOne");
+      tabTwo.classList.remove("tabTwo");
+      tabOne.classList.add("tabOnes");
+      tabTwo.classList.add("tabTwos");
+    }
+  }
+</script>

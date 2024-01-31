@@ -1,0 +1,54 @@
+
+<div class="modal" id="editnewsModal-{{i.id}}">
+    <div class="modal-dialog">
+      <form action="{% url "update_news" %}" method="POST" id="addCountryForm"  autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit New</h4>
+            <button type="button" class="btn-close" data-dismiss="modal"></button>
+          </div>
+          <!-- Modal Body -->
+          
+            
+            <div class="modal-body">
+              <div class="row formrow">
+                <div class="col-md-12">
+                    <input type="text" value="{{i.id}}" name="news_id" hidden>
+                    <label for="" class="custom-form-label">News</label>
+                    <textarea class="form-control" name="news" id="news" >{{i.news}}</textarea>
+                </div>
+              </div>
+              <h3>Display For</h3>
+              <div class="row formrow">
+                <div class="col-md-4">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="employee" {% if i.employee %}checked{% endif %}> Employee
+                    </label>
+                    
+                </div>
+                <div class="col-md-4">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="agent" {% if i.agent %}checked{% endif %}> Agent
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="outsource_Agent" {% if i.outsource_Agent %}checked{% endif %}> OutSource Agent
+                    </label>
+                </div>
+              </div>
+            </div>
+          
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-color" type="submit">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

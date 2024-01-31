@@ -1,0 +1,50 @@
+{% load custom_filters %}
+<div class="modal fade" id="viewallnotes-{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+   aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="width:150%;">
+      
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">View All Notes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+               aria-label="Close"></button>
+            </div>
+            <div class="notesmodal-body">
+                <table>
+                <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th>Created Date</th>
+                <th>Created By</th>
+                <th>IP Address</th>
+                <th>Description</th>
+                <th>Attachment</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for note in i.notes_set.all %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{note.created_date}}</td>
+                    <td>{{note.created_by}}</td>
+                    <td>{{note.ip_address}}</td>
+                    <td>{{note.notes}}</td>
+                    {% if note.file %}
+                    <td><a href="{{ note.file.url }}">{{ note.file.name|filename }}</a></td>
+                {% else %}
+                    <td>No attachment</td>
+                {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+               
+            </div>
+            {% comment %} <div class="modal-footer">
+                <div class=""><input class="btn btn-color" type="submit" value="Save"></div>
+            </div> {% endcomment %}
+        </div>
+        
+   </div>
+</div>

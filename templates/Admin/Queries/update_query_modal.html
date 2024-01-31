@@ -1,0 +1,42 @@
+<div class="modal" id="myModal-{{i.id}}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form action="{% url "add_answer" %}" method="POST">
+            {% csrf_token %}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Answer</h5>
+                
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                   
+                </button>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="row formrow">
+                    <input type="text" value="{{i.id}}" name="question_id" hidden>
+                    <div class="col-md-12 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label"><b>Add Question</b></label>
+                        <input type="text" class="form-control" id="question" name="question" placeholder="How can you become skytrails agent?" value="{{i.question}}" readonly>
+                    </div>
+                    
+                </div>
+                <div class="row formrow">
+                    <div class="col-md-12 ">
+                        <label for="exampleFormControlInput1" class="custom-form-label"><b>Answer Here</b></label>
+                        <textarea class="form-control" name="answer" id="" cols="30" rows="10">{{i.answer}}</textarea>
+                        
+                    </div>
+                      
+                </div>
+            </div>
+            <hr>
+            <div class="modal-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-color" type="submit">Submit</button>
+                  </div>
+              
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
